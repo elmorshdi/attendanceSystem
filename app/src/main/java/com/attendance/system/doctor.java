@@ -15,6 +15,10 @@ public class doctor {
         this.id = id;
         this.email = email;
         this.passward = passward;
+
+
+
+
         this.subjects = subjects;
     }
 

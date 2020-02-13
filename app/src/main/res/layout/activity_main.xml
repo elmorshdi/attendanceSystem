@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -17,14 +18,13 @@
         android:layout_marginRight="50dp"
         android:src="@drawable/a"
         android:contentDescription="@string/todo" />
+        <TextView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+          android:text="intro"
+          android:gravity="center_horizontal"
+            android:textSize="70sp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/app_name"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/username_text_input_layout"
@@ -38,7 +38,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:drawableLeft="@drawable/person"
+                android:drawableStart="@drawable/person"
                 android:drawablePadding="5dp"
                 android:hint="Enter user email"
                 android:inputType="textEmailAddress"
@@ -59,7 +59,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:drawableLeft="@drawable/lock"
+                android:drawableStart="@drawable/lock"
                 android:drawablePadding="10dp"
                 android:hint="password"
                 android:importantForAutofill="no"
@@ -68,11 +68,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <RadioGroup
+            android:id="@+id/RadioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/RadioStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -82,6 +84,7 @@
                 android:textSize="20sp" />
 
             <RadioButton
+                android:id="@+id/Radiolecturer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -105,15 +108,15 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/bu1"
             android:gravity="center"
             android:text="sign up"
+            android:onClick="go_signup"
             android:textSize="20sp" />
 
 
     </LinearLayout>
 
-</RelativeLayout>
 

@@ -52,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void login(View view) {
-        String emailtext, passwordtext;
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+
+       /* String emailtext, passwordtext;
         emailtext = user.getText().toString();
         passwordtext = password.getText().toString();
 
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             password.setError("enter passward");
             return;
         }
-
+*/
 
 
     }

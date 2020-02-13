@@ -1,6 +1,8 @@
 package com.attendance.system;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -31,6 +33,9 @@ public class sing_up extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
-
+    public void go_signin(View view) {
+        Intent intent = new Intent(sing_up.this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }

@@ -45,6 +45,7 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
+            android:onClick="recordact"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -64,11 +65,11 @@
 
                 <TextView
                     android:id="@+id/tvid1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:text="Attendace"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="Record attendance"
                     android:textColor="#2E86C1"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -87,6 +88,7 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
+            android:onClick="go_addsub"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -109,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Register Student"
+                    android:text=" Add Cours"
                     android:textColor="#2E86C1"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -120,15 +122,15 @@
         <!--Row 2-->
         <!--Col 1-->
         <androidx.cardview.widget.CardView
-            android:layout_height="0dp"
             android:layout_width="0dp"
-            android:layout_columnWeight="1"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
-            android:layout_marginLeft="14dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -149,9 +151,9 @@
                     android:id="@+id/tvid3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:text="View Student"
                     android:layout_gravity="center"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="my account"
                     android:textColor="#2E86C1"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -184,13 +186,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="90dp"
                     android:id="@+id/Image4"
-                    android:src="@drawable/attendanceresult"
+                    android:src="@drawable/notes"
                     android:layout_gravity="center_horizontal"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvid4"
-                    android:text="Calculated CGPA"
+                    android:text="View attendance"
                     android:textStyle="bold"
                     android:fontFamily="sans-serif-smallcaps"
                     android:layout_gravity="center"
@@ -211,21 +213,22 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
+            android:onClick="sign_out"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="107dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/Image5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/notes" />
+                    android:src="@drawable/ic_input_black_24dp" />
 
 
                 <TextView
@@ -233,7 +236,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Notes"
+                    android:text="Sing Out"
                     android:layout_gravity="center"
                     android:textColor="#2E86C1"
                     android:textSize="15dp"

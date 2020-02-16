@@ -50,7 +50,9 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:hint=" pick date"
-            android:textSize="22sp"/>
+            android:textSize="22sp"
+            android:inputType="date"
+            android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -131,7 +133,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"/>
     <Button
         android:id="@+id/uploud_bu"
         android:layout_gravity="center_horizontal"

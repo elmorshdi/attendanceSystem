@@ -92,9 +92,9 @@ public class recordattendActivity extends AppCompatActivity {
         Intent intent= new Intent(recordattendActivity.this,HomeActivity.class);
         startActivity(intent);
     }
-
     public void goto_qr(View view) {
-        Toast.makeText(this, "scan", Toast.LENGTH_SHORT).show();
+        Intent intent= new Intent(recordattendActivity.this,scanActivity.class);
+        startActivity(intent);
     }
 
     public void addid(View view)

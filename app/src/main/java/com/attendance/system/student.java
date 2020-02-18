@@ -6,12 +6,11 @@ class student {
   private   String name , email,id ,password;
   private ArrayList<subject>subjects=new ArrayList<>();
 
-    public student(String name, String email, String id, String password, ArrayList<subject> subjects) {
+    public student(String name, String email, String id, String password) {
         this.name = name;
         this.email = email;
         this.id = id;
         this.password = password;
-        this.subjects = subjects;
     }
 
     public String getPassword() {

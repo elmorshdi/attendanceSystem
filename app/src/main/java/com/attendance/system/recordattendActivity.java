@@ -2,7 +2,9 @@ package com.attendance.system;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -14,6 +16,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -24,7 +30,7 @@ public class recordattendActivity extends AppCompatActivity {
     TextView textView;
     String id;
     ArrayList<String>arrayList=new ArrayList<String>();
-    static   ArrayList<String>arrayscan=new ArrayList<String>();
+    ArrayList<String>arrayscan=new ArrayList<String>();
 
     ArrayAdapter<String> itemsAdapter;
 
@@ -39,11 +45,9 @@ public class recordattendActivity extends AppCompatActivity {
         editdat = findViewById(R.id.datepicker);
         editid =findViewById(R.id.stu_id);
         editccode =findViewById(R.id.cours_code);
+        itemsAdapter=new ArrayAdapter<String>(this,R.layout.item,R.id.texti, arrayList);
+        listView.setAdapter(itemsAdapter);
 
-
-        Intent data=getIntent();
-        arrayscan=data.getStringArrayListExtra("list");
-        setlist(arrayscan);
 
         Calendar calendar = Calendar.getInstance();
         year= 2019;
@@ -60,17 +64,62 @@ public class recordattendActivity extends AppCompatActivity {
         });
 
     }
-    public void setlist(ArrayList array) {
 
-        if(array!=null) {
-            arrayList.addAll(array);
-            itemsAdapter=new ArrayAdapter<String>(this,R.layout.item,R.id.texti, arrayList);
-            listView.setAdapter(itemsAdapter);
-            textView.setText("number of student :"+ arrayList.size());
-        }
-        else {            Toast.makeText(this, "sad", Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+    }
+    public ArrayList<String> getArrayList(String key){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(recordattendActivity.this);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        return gson.fromJson(json, type);
+    }
+    @Override
+    protected void onRestart() {
+
+        for (String s : arrayscan = getArrayList("arraylistscand")) {
+            itemsAdapter.add(s);
+
         }
 
+
+       /* if (get_id_from_scan()!=null)
+        {
+            if(arrayscan!=null){arrayscan.addAll(get_id_from_scan());}
+            arrayscan=get_id_from_scan();
+        }
+
+        itemsAdapter.addAll(arrayscan);
+        textView.setText("vv");*/
+        super.onRestart();
+
+
+    }
+
+    public ArrayList<String> get_id_from_scan() {
+        Intent data=getIntent();
+        ArrayList<String>array=new ArrayList<String>();
+        if (data.getStringArrayListExtra("list")!=null)
+        {
+            array=data.getStringArrayListExtra("list");
+        return array;
+        }
+        else {
+            return null;
+        }
+
+    }
+
+    public void saveArrayList(ArrayList<String> list, String key){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(recordattendActivity.this);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String list_in_json = gson.toJson(list);
+        editor.putString(key, list_in_json);
+        editor.commit();
     }
     private void showdatediloge() {
 
@@ -88,22 +137,22 @@ public class recordattendActivity extends AppCompatActivity {
         datePickerDialog.show();
 
     }
+
     public void go_home(View view) {
         Intent intent= new Intent(recordattendActivity.this,HomeActivity.class);
         startActivity(intent);
     }
+
     public void goto_qr(View view) {
         Intent intent= new Intent(recordattendActivity.this,scanActivity.class);
         startActivity(intent);
     }
 
     public void addid(View view)
-    {
-        arrayscan.add(editid.getText().toString());
-        setlist(arrayscan);
-
-
-
+    { id=editid.getText().toString();
+        if (!id.isEmpty()){ arrayscan.add(id);}
+        itemsAdapter.add(id);
+        textView.setText("vv");
     }
 
     public void uploud(View view) {

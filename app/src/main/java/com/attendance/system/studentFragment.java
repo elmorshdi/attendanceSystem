@@ -31,5 +31,6 @@ public class studentFragment extends Fragment {
     public void go_signin(View view) {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
+
     }
 }

@@ -3,8 +3,10 @@ package com.attendance.system;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.gson.Gson;
 import com.google.zxing.Result;
 import com.google.zxing.client.android.BeepManager;
 
@@ -28,6 +31,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
     ZXingScannerView mScannerView;
     private BeepManager beepManager;
     private String lastText;
+
     ArrayList<String>arrayListscand=new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,36 +51,26 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
         }
 
     }
-  @Override
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-
-            case CAMERA_PERMISSION_REQUEST_CODE:
-
-                // Check Camera permission is granted or not
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    onStart();
-
-                    Toast.makeText(scanActivity.this, "Camera  permission granted", Toast.LENGTH_SHORT).show();
-                } else {
-                    onBackPressed();
-                    Toast.makeText(scanActivity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-        }
+      if (requestCode == CAMERA_PERMISSION_REQUEST_CODE)
+      {// Check Camera permission is granted or not
+          if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+              onStart();
+          } else {
+              onBackPressed();
+              Toast.makeText(scanActivity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
+          }
+      }
     }
-
 
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(scanActivity.this, recordattendActivity.class);
-        intent.putExtra("list", arrayListscand);
-        startActivity(intent);
-        super.onBackPressed();
+    protected void onPause() {
+        super.onPause();
     }
+
+
 
     @Override
     public void onStart() {
@@ -96,9 +90,17 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
         super.onStop();
         mScannerView.stopCameraPreview();
         mScannerView.stopCamera();
+
     }
 
-
+    public void saveArrayList(ArrayList<String> list, String key){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(scanActivity.this);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String list_in_json = gson.toJson(list);
+        editor.putString(key, list_in_json);
+        editor.commit();
+    }
 
     @Override
     public void handleResult(Result result) {
@@ -111,6 +113,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
         else {
             lastText = result.getText();
             arrayListscand.add(result.getText());
+            saveArrayList(arrayListscand,"arraylistscand");
             beepManager.playBeepSoundAndVibrate();
             Toast.makeText(this, result.getText(), Toast.LENGTH_SHORT).show();
             onStart();

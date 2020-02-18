@@ -28,14 +28,14 @@ public class sing_up extends AppCompatActivity {
         tabstudent = findViewById(R.id.tab2);
         viewPager = findViewById(R.id.viewPager);
 
-        PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
     }
     public void go_signin(View view) {
         Intent intent = new Intent(sing_up.this, MainActivity.class);
         startActivity(intent);
+
     }
 
 }

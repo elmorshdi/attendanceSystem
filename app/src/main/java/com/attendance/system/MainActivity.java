@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        finish();
 
        /* String emailtext, passwordtext;
         emailtext = user.getText().toString();

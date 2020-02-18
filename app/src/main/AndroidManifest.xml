@@ -13,13 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".scanActivity"></activity>
-        <activity android:name=".addsubjectActivity" />
-        <activity android:name=".recordattendActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".sing_up" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".splashActivity">
+        <activity
+            android:name=".scanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".addsubjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recordattendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".sing_up"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

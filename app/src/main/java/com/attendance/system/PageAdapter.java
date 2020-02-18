@@ -9,7 +9,7 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
 
-    PageAdapter(FragmentManager fm, int numOfTabs) {
+    public PageAdapter(@NonNull FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
     }

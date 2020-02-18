@@ -9,13 +9,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     EditText user, password;
     RadioGroup radioGroup;
     RadioButton radiostudent,radiolecture;
-    ArrayList<student>students;
+    private FirebaseAuth mAuth;
+    String TAG = " MainActivity Error";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,19 +59,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
 
-       /* String emailtext, passwordtext;
-        emailtext = user.getText().toString();
-        passwordtext = password.getText().toString();
 
-        if (emailtext.isEmpty() || emailtext.equals(" ")) {
-            user.setError("enter email");
-            return;
-        }
-        if (passwordtext.isEmpty() || passwordtext.equals(" ")) {
-            password.setError("enter passward");
-            return;
-        }
-*/
 
 
     }

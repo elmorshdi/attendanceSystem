@@ -7,38 +7,10 @@
     android:orientation="vertical"
     tools:context=".doctorFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create a doctor account"
-        android:textSize="30sp"
-        android:gravity="center_horizontal"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Already have an account?"
-            android:textSize="18sp"
-            android:layout_centerInParent="true"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:clickable="true"
-            android:onClick="go_signin"
-            android:textColor="@android:color/holo_blue_light"
-            android:layout_toEndOf="@id/text1"
-            android:textSize="18sp"
-            android:focusable="true" />
-    </RelativeLayout>
-
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fname_text_input_layout"
+        android:id="@+id/dr_fname_text_input_layout"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:layout_height="wrap_content">
@@ -46,7 +18,7 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/fname"
+            android:id="@+id/dr_fname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Frist Name"
@@ -57,7 +29,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/lname_text_input_layout"
+        android:id="@+id/dr_lname_text_input_layout"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:layout_height="wrap_content">
@@ -65,7 +37,7 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/lname"
+            android:id="@+id/dr_lname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name"
@@ -77,7 +49,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_text_input_layout"
+        android:id="@+id/dr_id_text_input_layout"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:layout_height="wrap_content">
@@ -85,7 +57,7 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/id"
+            android:id="@+id/dr_id"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Universtie Id"
@@ -98,7 +70,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_text_input_layout"
+        android:id="@+id/dr_username_text_input_layout"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:layout_height="wrap_content">
@@ -106,7 +78,7 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/email"
+            android:id="@+id/dr_email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -117,17 +89,33 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_text_input_layout"
-        app:passwordToggleEnabled="true"
+        android:id="@+id/dr_password_text_input_layout"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/dr_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="password"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:textSize="25sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dr_confirm_password_text_input_layout"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/dr_confirm_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="confirm password"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:importantForAutofill="no"
@@ -139,11 +127,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:id="@+id/dr_singup"
         android:textColor="@android:color/white"
         android:background="@drawable/bu2"
         android:gravity="center"
         android:text="Sing Up"
         android:textSize="25sp" />
-
 
 </LinearLayout>

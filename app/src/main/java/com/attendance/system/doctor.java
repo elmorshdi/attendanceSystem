@@ -10,16 +10,11 @@ public class doctor {
 
     public doctor() {
     }
-    public doctor(String name, String id, String email, String passward, ArrayList<subject> subjects) {
+    public doctor(String name, String id, String email, String passward) {
         this.name = name;
         this.id = id;
         this.email = email;
         this.passward = passward;
-
-
-
-
-        this.subjects = subjects;
     }
 
     public String getId() {

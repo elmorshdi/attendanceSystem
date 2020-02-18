@@ -103,7 +103,7 @@ public class studentFragment extends Fragment {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(tag, "createUserWithEmail:success");
-                                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                        Intent intent = new Intent(getActivity(), student_home_Activity.class);
                                         startActivity(intent);
                                         getActivity().finish();
                                     } else {

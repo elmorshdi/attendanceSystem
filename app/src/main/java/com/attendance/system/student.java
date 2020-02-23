@@ -6,7 +6,7 @@ class student {
     private String name, email, id, password, type;
   private ArrayList<subject>subjects=new ArrayList<>();
 
-    public student(String name, String email, String id, String password, String type) {
+    public student(String name, String email, String id, String password) {
         this.name = name;
         this.email = email;
         this.id = id;

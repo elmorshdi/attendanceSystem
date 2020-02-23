@@ -116,6 +116,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bu2"
         android:text="  Update   "
+        android:onClick="Update"
         android:textColor="@android:color/white"
         android:textSize="30sp" />
 

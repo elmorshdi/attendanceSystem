@@ -17,8 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class doctor_account_Activity extends AppCompatActivity {
     String idtxt, nametxt, passwordtxt, emailtxt, TAG;
-    EditText name, id, password, Email;
+    EditText name, id, password, email;
     private DatabaseReference mdata;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,12 @@ public class doctor_account_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_account_);
         mdata = FirebaseDatabase.getInstance().getReference();
         idtxt = getIntent().getStringExtra("id");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         name = findViewById(R.id.ed_name);
         id = findViewById(R.id.ed_id);
         password = findViewById(R.id.ed_password);
-        Email = findViewById(R.id.ed_email);
+        email = findViewById(R.id.ed_email);
     }
 
     @Override
@@ -45,7 +47,10 @@ public class doctor_account_Activity extends AppCompatActivity {
                 passwordtxt = dataSnapshot.child("doctor").child(idtxt).child("password").getValue(String.class);
 
                 Toast.makeText(doctor_account_Activity.this, "succ", Toast.LENGTH_SHORT).show();
-                updateUi();
+                name.setText(nametxt);
+                email.setText(emailtxt);
+                id.setText(idtxt);
+                password.setText(passwordtxt);
             }
 
             @Override
@@ -60,12 +65,7 @@ public class doctor_account_Activity extends AppCompatActivity {
         super.onStart();
     }
 
-    public void updateUi() {
-        name.setText(nametxt);
-        Email.setText(emailtxt);
-        id.setText(idtxt);
-        password.setText(passwordtxt);
-    }
+
 
 
     private void go_home(View view) {
@@ -73,13 +73,38 @@ public class doctor_account_Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
-   /*public void updateUi(View view) {
+    public void Update(View view) {
+        nametxt = name.getText().toString();
+        idtxt = id.getText().toString();
+        emailtxt = email.getText().toString();
+        passwordtxt = password.getText().toString();
+
+        if (nametxt.isEmpty() || nametxt.equals(" ")) {
+            name.setError("enter your name");
+        } else if (emailtxt.isEmpty() || emailtxt.equals(" ")) {
+            email.setError("Enter Email");
+        } else if (idtxt.isEmpty() || idtxt.equals(" ")) {
+            id.setError("enter ID");
+        } else if (passwordtxt.isEmpty() || passwordtxt.equals(" ")) {
+            password.setError("enter passward");
+        } else if (passwordtxt.length() < 8) {
+            password.setError("lengh mast be 8 or greater");
+
+        } else {
+            doctor doctor = new doctor(emailtxt, idtxt, nametxt, passwordtxt);
+            mDatabase.child("doctor").child(doctor.getId()).setValue(doctor);
+
+        }
+    }
+
+   /*public void updateUi() {
         name.setText(nametxt);
-        Email.setText(emailtxt);
+        email.setText(emailtxt);
         id.setText(idtxt);
         password.setText(passwordtxt);
     }
 
     */
+
 
 }

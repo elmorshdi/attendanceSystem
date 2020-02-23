@@ -1,5 +1,6 @@
 package com.attendance.system;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     String type, email, id, passtxt, firepass;
     String TAG = " MainActivity Error";
     SharedPreferences pref;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, student_home_Activity.class);
             startActivity(intent);
             finish();
-        }
-        if (pref.contains("dusername") && pref.contains("dpassword")) {
+        } else if (pref.contains("dusername") && pref.contains("dpassword")) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();
         }
+
+        progressDialog = new ProgressDialog(this);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         user = findViewById(R.id.loginemail);
         password = findViewById(R.id.loginpassword);
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 // email= dataSnapshot.child("doctor").child(id).child("email").getValue(String.class);
                 firepass = dataSnapshot.child(typee).child(id).child("password").getValue(String.class);
                 if (firepass == null) {
-                    Toast.makeText(MainActivity.this, "id not correct", Toast.LENGTH_SHORT).show();
+                    user.setError("id not correct");
                 }
             }
 
@@ -76,6 +79,58 @@ public class MainActivity extends AppCompatActivity {
 
         };
         mDatabase.addValueEventListener(Listener);
+
+    }
+    public void login(View view) {
+
+
+        passtxt = password.getText().toString();
+        id = user.getText().toString();
+
+        if (radiostudent.isChecked()) {
+            getpassword("student");
+            if (passtxt.equals(firepass)) {
+                progressDialog.show();
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("susername", id);
+                editor.putString("spassword", passtxt);
+                editor.apply();
+                studentlogin(id);
+            } else {
+                Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
+            }
+        } else if (radiolecture.isChecked()) {
+            getpassword("doctor");
+            if (passtxt.equals(firepass)) {
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("dusername", id);
+                editor.putString("dpassword", passtxt);
+                editor.apply();
+                doctorlogin(id);
+            } else {
+
+                Log.d("TAG", "Value: " + firepass);
+                Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+
+            radiolecture.setError("check the box");
+            Toast.makeText(MainActivity.this, "hhhhh", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void dsin() {
+        if (radiolecture.isChecked() && firepass == null) {
+            progressDialog.show();
+            getpassword("doctor");
+        }
+    }
+
+    public void go_signup(View view) {
+        Intent intent = new Intent(this, sing_up.class);
+        startActivity(intent);
+        finish();
     }
 
     private void studentlogin(String id) {
@@ -97,43 +152,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void login(View view) {
-
-        passtxt = password.getText().toString();
-        id = user.getText().toString();
-
-        if (radiostudent.isChecked()) {
-            getpassword("student");
-            if (passtxt.equals(firepass)) {
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("susername", id);
-                editor.putString("spassword", passtxt);
-                editor.apply();
-                studentlogin(id);
-            } else {
-                Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
-            }
-        } else if (radiolecture.isChecked()) {
-            getpassword("doctor");
-            if (passtxt.equals(firepass)) {
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("dusername", id);
-                editor.putString("dpassword", passtxt);
-                editor.commit();
-                doctorlogin(id);
-            } else {
-                Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-
-            radiolecture.setError("check the box");
-            Toast.makeText(MainActivity.this, "hhhhh", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-    public void go_signup(View view) {
-        Intent intent = new Intent(this, sing_up.class);
-        startActivity(intent);
-        finish();
-    }
 }

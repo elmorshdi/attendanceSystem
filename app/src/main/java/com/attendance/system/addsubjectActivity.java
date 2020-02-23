@@ -1,12 +1,12 @@
 package com.attendance.system;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,13 +34,20 @@ public class addsubjectActivity extends AppCompatActivity {
 
     public void add_cours(View view)
     {
+
         name=ed_name.getText().toString();
         code=ed_code.getText().toString();
         drname= ed_drname.getText().toString();
-        subject subject=new subject(name,code,drname,"0");
-        mDatabase.child("subject").child(subject.getCode()).setValue(subject);
-        Toast.makeText(this, "added", Toast.LENGTH_SHORT).show();
-
+        if (name.isEmpty() || name.equals(" ")) {
+            ed_name.setError("enter name");
+        } else if (code.isEmpty() || code.equals(" ")) {
+            ed_code.setError("enter code");
+        } else if (drname.isEmpty() || drname.equals(" ")) {
+            ed_drname.setError("enter name");
+        } else {
+            subject subject = new subject(name, code, drname, "0");
+            mDatabase.child("subject").child(subject.getCode()).setValue(subject);
+            Toast.makeText(this, "added", Toast.LENGTH_SHORT).show();
+        }
     }
 }
-// TODO: 15/02/20 اتشك ع ادت قبل الادد 

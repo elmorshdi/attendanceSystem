@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".doctor_account_Activity"></activity>
+        <activity android:name=".student_account_Activity"></activity>
+        <activity android:name=".doctor_account_Activity" />
         <activity android:name=".student_home_Activity" />
         <activity
             android:name=".scanActivity"

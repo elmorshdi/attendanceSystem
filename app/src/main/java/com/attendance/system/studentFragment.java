@@ -71,7 +71,7 @@ public class studentFragment extends Fragment {
                     confirm_password.setError("password not match");
                 } else {
 
-                    student student = new student(fnametxt, emailtext, idtxt, passwordtext, "student");
+                    student student = new student(fnametxt, emailtext, idtxt, passwordtext);
                     mDatabase.child("student").child(student.getId()).setValue(student);
 
                 }

@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void go_signup(View view) {
-        Intent intent = new Intent(this, sing_up.class);
+        Intent intent = new Intent(this, sign_up.class);
         startActivity(intent);
         finish();
     }

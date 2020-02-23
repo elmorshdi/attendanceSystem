@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class sing_up extends AppCompatActivity {
+public class sign_up extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     PageAdapter pageAdapter;
@@ -21,7 +21,7 @@ public class sing_up extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sing_up);
+        setContentView(R.layout.activity_sign_up);
 
         tabLayout = findViewById(R.id.tablayout);
         tabdoctor= findViewById(R.id.tab1);
@@ -33,9 +33,13 @@ public class sing_up extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
     public void go_signin(View view) {
-        Intent intent = new Intent(sing_up.this, MainActivity.class);
+        Intent intent = new Intent(sign_up.this, MainActivity.class);
         startActivity(intent);
 
     }
 
+    public void go_home(View view) {
+        Intent intent = new Intent(sign_up.this, MainActivity.class);
+        startActivity(intent);
+    }
 }

@@ -5,7 +5,32 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".sing_up">
+    tools:context=".sign_up">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Sign Up"
+            android:textColor="#ffffff"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:id="@+id/back_aroww"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            android:onClick="go_home"
+            android:src="@drawable/abc_vector_test"
+            android:tint="#ffffff" />
+    </RelativeLayout>
 
 
 <com.google.android.material.tabs.TabLayout
@@ -13,9 +38,9 @@
     android:id="@+id/tablayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    app:tabSelectedTextColor="@color/colorAccent"
-    app:tabTextColor="@android:color/white">
+    android:background="@color/colorPrimaryDark"
+    app:tabSelectedTextColor="@android:color/white"
+    app:tabTextColor="@color/colorAccent">
 
     <com.google.android.material.tabs.TabItem
         android:id="@+id/tab1"

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".studentFragment">
 
@@ -14,7 +13,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fullname_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_height="wrap_content">
 
         <EditText
@@ -36,7 +37,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/id_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_height="wrap_content">
 
         <EditText
@@ -57,7 +60,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_height="wrap_content">
 
         <EditText
@@ -75,7 +80,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_text_input_layout"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -92,7 +99,9 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirm_password_text_input_layout"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

@@ -29,7 +29,7 @@
             android:name=".HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".sing_up"
+            android:name=".sign_up"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"

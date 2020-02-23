@@ -3,20 +3,29 @@ package com.attendance.system;
 import java.util.ArrayList;
 
 public class doctor {
-    private String name ,id,email,passward;
+    private String name, id, email, passward, type;
     private ArrayList<subject> subjects=new ArrayList<>();
 
 
 
     public doctor() {
     }
-    public doctor(String name, String id, String email, String passward) {
+
+    public doctor(String email, String id, String name, String passward) {
         this.name = name;
         this.id = id;
         this.email = email;
         this.passward = passward;
+
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
     public String getId() {
         return id;
     }

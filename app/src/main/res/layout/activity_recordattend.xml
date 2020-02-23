@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,11 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_margin="20dp"
-            android:layout_toRightOf="@id/back_aroww"
-            android:text="Record the attendance"
+            android:text="RECORD ATTENDANCE"
             android:textColor="#ffffff"
-            android:textSize="26sp" />
+            android:textSize="30sp" />
 
         <ImageView
             android:id="@+id/back_aroww"
@@ -107,6 +104,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bu2"
             android:onClick="addid"
+            android:textColor="@android:color/white"
             android:text="add"
             android:textSize="22sp" />
     </LinearLayout>
@@ -117,6 +115,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:textColor="@android:color/white"
         android:background="@drawable/bu2"
         android:onClick="goto_qr"
         android:text="Scan id"
@@ -140,6 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bu2"
+        android:textColor="@android:color/white"
         android:text="   uploud   "
         android:textSize="22sp" />
 

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recordattendActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".recordattendActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -18,7 +18,7 @@
             android:layout_centerInParent="true"
             android:text="RECORD ATTENDANCE"
             android:textColor="#ffffff"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/back_aroww"
@@ -31,45 +31,46 @@
             android:tint="#ffffff" />
     </RelativeLayout>
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/datepicker_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
             android:id="@+id/datepicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:focusable="false"
             android:hint=" pick date"
-            android:textSize="22sp"
+            android:importantForAutofill="no"
             android:inputType="date"
-            android:importantForAutofill="no" />
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fname_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:inputType="textEmailAddress"
             android:id="@+id/cours_code"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:hint=" Course code  "
-            android:textSize="22sp"/>
+            android:inputType="textEmailAddress"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -77,70 +78,68 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:orientation="horizontal">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/stu_idtext_input_layout"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content">
+            android:layout_weight="2">
 
             <EditText
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
                 android:id="@+id/stu_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:hint="enter ID or scan it "
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textSize="22sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/addid_bu"
-            android:layout_weight="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:background="@drawable/bu2"
             android:onClick="addid"
-            android:textColor="@android:color/white"
             android:text="add"
+            android:textColor="@android:color/white"
             android:textSize="22sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/scan_bu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/bu2"
-        android:onClick="goto_qr"
-        android:text="Scan id"
-        android:textSize="26sp" />
-    <TextView
-        android:id="@+id/numtxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:layout_margin="5dp" />
+        <Button
+            android:id="@+id/scan_bu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/bu2"
+            android:onClick="goto_qr"
+            android:text="  Scan id  "
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp"/>
-    <Button
-        android:id="@+id/uploud_bu"
-        android:layout_gravity="center_horizontal"
-        android:paddingStart="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bu2"
-        android:textColor="@android:color/white"
-        android:text="   uploud   "
-        android:textSize="22sp" />
+        <Button
+            android:id="@+id/uploud_bu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/bu2"
+            android:onClick="uploud"
+            android:text="   scaned id   "
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

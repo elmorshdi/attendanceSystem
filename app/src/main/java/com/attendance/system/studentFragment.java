@@ -1,7 +1,9 @@
 package com.attendance.system;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ public class studentFragment extends Fragment {
     private EditText email, password, confirm_password, fullname, id;
     private String emailtext, passwordtext, confirm_passwordtext, idtxt, fnametxt;
     private DatabaseReference mDatabase;
+    private SharedPreferences pref;
 
     public studentFragment() {
         // Required empty public constructor
@@ -46,6 +49,7 @@ public class studentFragment extends Fragment {
         confirm_password = view.findViewById(R.id.confirm_password);
         id = view.findViewById(R.id.id);
         fullname = view.findViewById(R.id.fullname);
+        pref = this.getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,18 +77,25 @@ public class studentFragment extends Fragment {
 
                     student student = new student(fnametxt, emailtext, idtxt, passwordtext);
                     mDatabase.child("student").child(student.getId()).setValue(student);
-
+                    studentlogin(student.getId());
                 }
-                Intent intent = new Intent(getActivity(), student_home_Activity.class);
-                intent.putExtra("id", idtxt);
-                startActivity(intent);
-                getActivity().finish();
+
 
             }
         });
 
 
         return view;
+    }
+
+    private void studentlogin(String id) {
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("susername", id);
+        editor.putString("spassword", passwordtext);
+        editor.apply();
+        Intent intent = new Intent(getActivity(), student_home_Activity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
 

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".splashActivity">
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="50dp"
-        android:src="@drawable/a"
-        android:layout_centerInParent="true" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/aaaaa"
+        android:textAlignment="center" />
 </RelativeLayout>

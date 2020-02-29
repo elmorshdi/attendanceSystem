@@ -6,23 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
+    android:background="@color/colorPrimaryDark"
+
     tools:context=".HomeActivity">
 
     <RelativeLayout
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <TextView
-            android:id="@+id/Title"
-            android:text="Attendance Mangement System"
-            android:layout_centerInParent="true"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-smallcaps"
-            android:textColor="#2E86C1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/aaaaa" />
     </RelativeLayout>
     <GridLayout
         android:layout_height="wrap_content"
@@ -41,6 +38,7 @@
             android:layout_width="0dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:backgroundTint="@color/zxing_transparent"
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
@@ -68,10 +66,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textAlignment="center"
-                    android:text="Record attendance"
-                    android:textColor="#2E86C1"
-                    android:textSize="15sp"
+                    android:layout_gravity="center"
                     android:textStyle="bold"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:text="Tacke Attendance"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15dp"
 
                     />
 
@@ -83,6 +83,7 @@
         <androidx.cardview.widget.CardView
             android:layout_height="0dp"
             android:layout_width="0dp"
+            android:backgroundTint="@color/zxing_transparent"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:layout_marginRight="14dp"
@@ -113,7 +114,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-smallcaps"
                     android:text=" Add Cours"
-                    android:textColor="#2E86C1"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -132,6 +133,7 @@
             android:layout_marginBottom="14dp"
             app:cardCornerRadius="8dp"
             android:onClick="my_account"
+            android:backgroundTint="@color/zxing_transparent"
             app:cardElevation="8dp">
 
             <LinearLayout
@@ -154,10 +156,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:text="My Account"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="my account"
-                    android:textColor="#2E86C1"
-                    android:textSize="15sp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
 
@@ -175,6 +177,8 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
+            android:backgroundTint="@color/zxing_transparent"
+            android:outlineAmbientShadowColor="@color/colorPrimary"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -199,7 +203,7 @@
                     android:fontFamily="sans-serif-smallcaps"
                     android:layout_gravity="center"
                     android:textSize="15dp"
-                    android:textColor="#2E86C1"
+                    android:textColor="@color/colorAccent"
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -215,6 +219,7 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
+            android:backgroundTint="@color/zxing_transparent"
             android:onClick="sign_out"
             app:cardCornerRadius="8dp">
 
@@ -238,9 +243,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text="Sing Out"
+                    android:text="Sign Out"
+                    android:textColor="@color/colorAccent"
                     android:layout_gravity="center"
-                    android:textColor="#2E86C1"
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
@@ -248,7 +253,6 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
 
 
 

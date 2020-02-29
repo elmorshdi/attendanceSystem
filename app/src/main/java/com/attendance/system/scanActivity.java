@@ -2,11 +2,9 @@ package com.attendance.system;
 
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.zxing.Result;
 import com.google.zxing.client.android.BeepManager;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -94,31 +93,42 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     public void saveArrayList(ArrayList<String> list, String key){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(scanActivity.this);
+        SharedPreferences prefs = getSharedPreferences("id", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String list_in_json = gson.toJson(list);
         editor.putString(key, list_in_json);
-        editor.commit();
+        editor.apply();
     }
 
     @Override
     public void handleResult(Result result) {
+        arrayListscand = getArrayList("all_id");
+
         if (result.getText() == null || result.getText().equals(lastText)) {
             // Prevent duplicate scans
-            Toast.makeText(this, "duplicate scans", Toast.LENGTH_SHORT).show();
+            if (arrayListscand.contains(result.getText()))
+                Toast.makeText(this, "duplicate id", Toast.LENGTH_SHORT).show();
 
             onStart();
-        }
-        else {
+        } else {
             lastText = result.getText();
             arrayListscand.add(result.getText());
-            saveArrayList(arrayListscand,"arraylistscand");
             beepManager.playBeepSoundAndVibrate();
             Toast.makeText(this, result.getText(), Toast.LENGTH_SHORT).show();
             onStart();
         }
+        saveArrayList(arrayListscand, "all_id");
 
+    }
+
+    public ArrayList<String> getArrayList(String key) {
+        SharedPreferences prefs = getSharedPreferences("id", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        return gson.fromJson(json, type);
     }
 
 

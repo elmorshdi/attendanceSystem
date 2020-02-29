@@ -11,7 +11,7 @@ public class doctor {
     public doctor() {
     }
 
-    public doctor(String email, String id, String name, String passward) {
+    public doctor(String name, String id, String email, String passward) {
         this.name = name;
         this.id = id;
         this.email = email;

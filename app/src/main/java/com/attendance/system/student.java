@@ -11,7 +11,6 @@ class student {
         this.email = email;
         this.id = id;
         this.password = password;
-        this.type = type;
     }
 
     public String getType() {

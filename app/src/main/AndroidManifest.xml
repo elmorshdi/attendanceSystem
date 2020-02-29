@@ -13,30 +13,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".student_account_Activity"></activity>
-        <activity android:name=".doctor_account_Activity" />
-        <activity android:name=".student_home_Activity" />
+        <activity
+            android:name=".listviewActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".student_account_Activity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".doctor_account_Activity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name=".student_home_Activity"
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".scanActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".addsubjectActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".recordattendActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".sign_up"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
             android:name=".splashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

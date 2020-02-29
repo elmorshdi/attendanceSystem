@@ -1,10 +1,12 @@
 package com.attendance.system;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,27 +19,26 @@ import com.google.firebase.database.ValueEventListener;
 
 public class doctor_account_Activity extends AppCompatActivity {
     String idtxt, nametxt, passwordtxt, emailtxt, TAG;
-    EditText name, id, password, email;
+    EditText name, password, email;
     private DatabaseReference mdata;
     private DatabaseReference mDatabase;
+    SharedPreferences prf;
+    TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_account_);
         mdata = FirebaseDatabase.getInstance().getReference();
-        idtxt = getIntent().getStringExtra("id");
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        prf = getSharedPreferences("user_details", MODE_PRIVATE);
 
+        idtxt = prf.getString("dusername", null);
         name = findViewById(R.id.ed_name);
-        id = findViewById(R.id.ed_id);
         password = findViewById(R.id.ed_password);
         email = findViewById(R.id.ed_email);
-    }
-
-    @Override
-    protected void onStart() {
-
+        textView = findViewById(R.id.welcome);
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -45,12 +46,13 @@ public class doctor_account_Activity extends AppCompatActivity {
                 nametxt = dataSnapshot.child("doctor").child(idtxt).child("name").getValue(String.class);
                 emailtxt = dataSnapshot.child("doctor").child(idtxt).child("email").getValue(String.class);
                 passwordtxt = dataSnapshot.child("doctor").child(idtxt).child("password").getValue(String.class);
-
-                Toast.makeText(doctor_account_Activity.this, "succ", Toast.LENGTH_SHORT).show();
+                String[] names = nametxt.split(" ");
+                String fname = names[0];
+                textView.setText("Welcome!" + " " + fname);
                 name.setText(nametxt);
                 email.setText(emailtxt);
-                id.setText(idtxt);
                 password.setText(passwordtxt);
+
             }
 
             @Override
@@ -62,20 +64,17 @@ public class doctor_account_Activity extends AppCompatActivity {
             }
         };
         mdata.addValueEventListener(listener);
-        super.onStart();
+
     }
 
+    @Override
+    protected void onStart() {
 
-
-
-    private void go_home(View view) {
-        Intent intent = new Intent(doctor_account_Activity.this, HomeActivity.class);
-        startActivity(intent);
+        super.onStart();
     }
 
     public void Update(View view) {
         nametxt = name.getText().toString();
-        idtxt = id.getText().toString();
         emailtxt = email.getText().toString();
         passwordtxt = password.getText().toString();
 
@@ -83,8 +82,7 @@ public class doctor_account_Activity extends AppCompatActivity {
             name.setError("enter your name");
         } else if (emailtxt.isEmpty() || emailtxt.equals(" ")) {
             email.setError("Enter Email");
-        } else if (idtxt.isEmpty() || idtxt.equals(" ")) {
-            id.setError("enter ID");
+
         } else if (passwordtxt.isEmpty() || passwordtxt.equals(" ")) {
             password.setError("enter passward");
         } else if (passwordtxt.length() < 8) {
@@ -97,14 +95,8 @@ public class doctor_account_Activity extends AppCompatActivity {
         }
     }
 
-   /*public void updateUi() {
-        name.setText(nametxt);
-        email.setText(emailtxt);
-        id.setText(idtxt);
-        password.setText(passwordtxt);
+    public void go_home(View view) {
+        Intent intent = new Intent(doctor_account_Activity.this, HomeActivity.class);
+        startActivity(intent);
     }
-
-    */
-
-
 }

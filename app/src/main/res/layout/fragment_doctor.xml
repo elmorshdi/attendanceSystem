@@ -69,7 +69,7 @@
             android:hint="Universtie Id"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:textSize="25sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,7 +143,7 @@
         android:textColor="@android:color/white"
         android:background="@drawable/bu2"
         android:gravity="center"
-        android:text="Sing Up"
+        android:text="Sign Up"
         android:textSize="25sp" />
 
 </LinearLayout>

@@ -1,10 +1,12 @@
 package com.attendance.system;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,27 +19,24 @@ import com.google.firebase.database.ValueEventListener;
 
 public class student_account_Activity extends AppCompatActivity {
     String idtxt, nametxt, passwordtxt, emailtxt, TAG;
-    EditText name, id, password, email;
+    EditText name, password, email;
+    TextView textView;
     private DatabaseReference mdata;
     private DatabaseReference mDatabase;
+    SharedPreferences prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_account_);
         mdata = FirebaseDatabase.getInstance().getReference();
-        idtxt = getIntent().getStringExtra("id");
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        prf = getSharedPreferences("user_details", MODE_PRIVATE);
+        idtxt = prf.getString("susername", null);
+        textView = findViewById(R.id.welcome);
         name = findViewById(R.id.ed_name);
-        id = findViewById(R.id.ed_id);
         password = findViewById(R.id.ed_password);
         email = findViewById(R.id.ed_email);
-    }
-
-    @Override
-    protected void onStart() {
-
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -45,12 +44,12 @@ public class student_account_Activity extends AppCompatActivity {
                 nametxt = dataSnapshot.child("student").child(idtxt).child("name").getValue(String.class);
                 emailtxt = dataSnapshot.child("student").child(idtxt).child("email").getValue(String.class);
                 passwordtxt = dataSnapshot.child("student").child(idtxt).child("password").getValue(String.class);
-
+                String[] names = nametxt.split(" ");
+                String fname = names[0];
+                textView.setText("Welcome!" + " " + fname);
                 name.setText(nametxt);
                 email.setText(emailtxt);
-                id.setText(idtxt);
                 password.setText(passwordtxt);
-                Toast.makeText(student_account_Activity.this, "succ", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -62,6 +61,12 @@ public class student_account_Activity extends AppCompatActivity {
             }
         };
         mdata.addValueEventListener(listener);
+    }
+
+    @Override
+    protected void onStart() {
+
+
         super.onStart();
     }
 
@@ -72,7 +77,6 @@ public class student_account_Activity extends AppCompatActivity {
 
     public void Update(View view) {
         nametxt = name.getText().toString();
-        idtxt = id.getText().toString();
         emailtxt = email.getText().toString();
         passwordtxt = password.getText().toString();
 
@@ -81,8 +85,7 @@ public class student_account_Activity extends AppCompatActivity {
             name.setError("enter your name");
         } else if (emailtxt.isEmpty() || emailtxt.equals(" ")) {
             email.setError("Enter Email");
-        } else if (idtxt.isEmpty() || idtxt.equals(" ")) {
-            id.setError("enter ID");
+
         } else if (passwordtxt.isEmpty() || passwordtxt.equals(" ")) {
             password.setError("enter passward");
         } else if (passwordtxt.length() < 8) {
@@ -95,10 +98,4 @@ public class student_account_Activity extends AppCompatActivity {
         }
     }
 
-    public void updateUi() {
-        name.setText(nametxt);
-        email.setText(emailtxt);
-        id.setText(idtxt);
-        password.setText(passwordtxt);
-    }
 }

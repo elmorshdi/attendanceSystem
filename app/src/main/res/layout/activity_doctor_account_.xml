@@ -32,6 +32,15 @@
             android:tint="#ffffff" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="Welcome!"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="26sp" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_name_text_input_layout"
         android:layout_width="match_parent"
@@ -55,20 +64,7 @@
         android:id="@+id/ed_id_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
-
-        <EditText
-            android:id="@+id/ed_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="ID"
-            android:inputType="text"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_margin="5dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_email_text_input_layout"
@@ -103,7 +99,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:hint="password"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textSize="20sp" />

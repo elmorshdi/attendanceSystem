@@ -77,6 +77,8 @@ public class Student_Fragment extends Fragment {
 
                     Student student = new Student(emailtext, idtxt, fnametxt, passwordtext);
                     mDatabase.child("student").child(student.getId()).setValue(student);
+                    mDatabase.child("student").child(student.getId()).child("subjects").child("sub_code").child("date").setValue("true");
+
                     studentlogin(student.getId());
                 }
 

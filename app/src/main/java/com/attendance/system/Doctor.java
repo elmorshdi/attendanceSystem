@@ -3,7 +3,7 @@ package com.attendance.system;
 import java.util.ArrayList;
 
 public class Doctor {
-    private String name, id, email, passward, type;
+    private String name, id, email, passward;
     private ArrayList<Subject> Subjects = new ArrayList<>();
 
 
@@ -18,13 +18,6 @@ public class Doctor {
 
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
     public String getId() {
         return id;
     }
@@ -32,7 +25,6 @@ public class Doctor {
     public void setId(String id) {
         this.id = id;
     }
-
 
 
     public String getName() {

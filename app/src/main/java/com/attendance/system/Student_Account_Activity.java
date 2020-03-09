@@ -21,9 +21,9 @@ public class Student_Account_Activity extends AppCompatActivity {
     String idtxt, nametxt, passwordtxt, emailtxt, TAG;
     EditText name, password, email;
     TextView textView;
+    SharedPreferences prf;
     private DatabaseReference mdata;
     private DatabaseReference mDatabase;
-    SharedPreferences prf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

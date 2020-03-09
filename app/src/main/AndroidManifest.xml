@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Get_doc_attendActivity"></activity>
+        <activity android:name=".Get_stu_attend"></activity>
+        <activity android:name=".Get_doc_attendActivity" />
         <activity
             android:name=".Listed_Toupdate_Activity"
             android:screenOrientation="fullSensor" />

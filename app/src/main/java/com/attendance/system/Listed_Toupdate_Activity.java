@@ -69,7 +69,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
 
 
         textView.setText("number of student: " + adapter.getCount() + "\n" + "Date of day :" + date +
-                "\n" + "subject code :" + sub_code );
+                "\n" + "subject code :" + sub_code);
 
     }
 
@@ -100,7 +100,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
 
         SharedPreferences.Editor editor = pref.edit();
         textView.setText("number of student: " + "\n" + "Date of day :" + "\n" +
-                "subject code :" );
+                "subject code :");
         editor.remove("all_id").apply();
         adapter.clear();
         editor.remove("cours_code").commit();

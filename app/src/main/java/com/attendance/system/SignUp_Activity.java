@@ -24,7 +24,7 @@ public class SignUp_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         tabLayout = findViewById(R.id.tablayout);
-        tabdoctor= findViewById(R.id.tab1);
+        tabdoctor = findViewById(R.id.tab1);
         tabstudent = findViewById(R.id.tab2);
         viewPager = findViewById(R.id.viewPager);
 
@@ -32,6 +32,7 @@ public class SignUp_Activity extends AppCompatActivity {
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
+
     public void go_signin(View view) {
         Intent intent = new Intent(SignUp_Activity.this, MainActivity.class);
         startActivity(intent);

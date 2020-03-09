@@ -3,8 +3,8 @@ package com.attendance.system;
 import java.util.Map;
 
 class Student {
-    private String name, email, id, password, type;
     Map<String, Map<String, String>> subjects;
+    private String name, email, id, password, type;
 
     public Student(String email, String id, String name, String password) {
         this.name = name;
@@ -22,6 +22,9 @@ class Student {
         this.subjects = subjects;
     }
 
+    public Student() {
+    }
+
     public String getType() {
         return type;
     }
@@ -36,10 +39,6 @@ class Student {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-
-    public Student() {
     }
 
     public Map<String, Map<String, String>> getSubjects() {

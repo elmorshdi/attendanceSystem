@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Get_doc_attendActivity">
+    tools:context=".Get_stu_attend">
 
     <LinearLayout
-        android:id="@+id/linear"
+        android:id="@+id/linear2"
         android:layout_width="match_parent"
         android:layout_height="61dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
         <EditText
-            android:id="@+id/code_s"
+            android:id="@+id/code_s2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -25,7 +25,7 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/bu"
+            android:id="@+id/bu2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -41,5 +41,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:id="@+id/recyclerview"/>
+        android:id="@+id/recyclerview2"/>
 </LinearLayout>

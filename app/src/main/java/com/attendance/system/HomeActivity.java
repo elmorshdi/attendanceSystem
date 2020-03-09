@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(HomeActivity.this, Record_Attend_Activity.class);
         startActivity(intent);
     }
+
     public void go_addsub(View view) {
         Intent intent = new Intent(HomeActivity.this, Add_subjectActivity.class);
         startActivity(intent);

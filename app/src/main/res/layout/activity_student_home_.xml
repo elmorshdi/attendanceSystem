@@ -86,6 +86,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
+            android:onClick="get_attend"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 

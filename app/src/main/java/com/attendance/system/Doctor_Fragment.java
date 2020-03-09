@@ -22,10 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class Doctor_Fragment extends Fragment {
 
-    private EditText dr_email, dr_password, dr_confirm_password,dr_fname,dr_id,dr_lname;
-    private String dr_emailtext, dr_passwordtext, dr_confirm_passwordtext ,dr_idtxt,dr_fnametxt,dr_lnametxt;
-    private DatabaseReference mDatabase;
     SharedPreferences pref;
+    private EditText dr_email, dr_password, dr_confirm_password, dr_fname, dr_id, dr_lname;
+    private String dr_emailtext, dr_passwordtext, dr_confirm_passwordtext, dr_idtxt, dr_fnametxt, dr_lnametxt;
+    private DatabaseReference mDatabase;
 
 
     public Doctor_Fragment() {
@@ -38,24 +38,22 @@ public class Doctor_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
-
         View view = inflater.inflate(R.layout.fragment_doctor, container, false);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Button button = view.findViewById(R.id.dr_singup);
         dr_email = view.findViewById(R.id.dr_email);
         dr_password = view.findViewById(R.id.dr_password);
         dr_confirm_password = view.findViewById(R.id.dr_confirm_password);
-        dr_id=view.findViewById(R.id.dr_id);
-        dr_fname=view.findViewById(R.id.dr_fname);
-        dr_lname=view.findViewById(R.id.dr_lname);
+        dr_id = view.findViewById(R.id.dr_id);
+        dr_fname = view.findViewById(R.id.dr_fname);
+        dr_lname = view.findViewById(R.id.dr_lname);
         pref = this.getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dr_fnametxt=dr_fname.getText().toString()+" "+dr_lname.getText().toString() ;
-                dr_lnametxt=dr_lname.getText().toString();
-                dr_idtxt=dr_id.getText().toString();
+                dr_fnametxt = dr_fname.getText().toString() + " " + dr_lname.getText().toString();
+                dr_lnametxt = dr_lname.getText().toString();
+                dr_idtxt = dr_id.getText().toString();
                 dr_emailtext = dr_email.getText().toString();
                 dr_passwordtext = dr_password.getText().toString();
                 dr_confirm_passwordtext = dr_confirm_password.getText().toString();

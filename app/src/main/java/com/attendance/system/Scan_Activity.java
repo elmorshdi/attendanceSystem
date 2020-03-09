@@ -25,13 +25,13 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class Scan_Activity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     // Camera Permission Request Code
-    private  final int CAMERA_PERMISSION_REQUEST_CODE = 2;
+    private final int CAMERA_PERMISSION_REQUEST_CODE = 2;
 
     ZXingScannerView mScannerView;
+    ArrayList<String> arrayListscand = new ArrayList<String>();
     private BeepManager beepManager;
     private String lastText;
 
-    ArrayList<String>arrayListscand=new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,25 +50,24 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
         }
 
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-      if (requestCode == CAMERA_PERMISSION_REQUEST_CODE)
-      {// Check Camera permission is granted or not
-          if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-              onStart();
-          } else {
-              onBackPressed();
-              Toast.makeText(Scan_Activity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
-          }
-      }
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {// Check Camera permission is granted or not
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                onStart();
+            } else {
+                onBackPressed();
+                Toast.makeText(Scan_Activity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
     }
-
 
 
     @Override
@@ -92,7 +91,7 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
 
     }
 
-    public void saveArrayList(ArrayList<String> list, String key){
+    public void saveArrayList(ArrayList<String> list, String key) {
         SharedPreferences prefs = getSharedPreferences("id", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();

@@ -34,4 +34,10 @@ public class Student_Home_Activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void get_attend(View view) {
+        Intent intent = new Intent(this, Get_stu_attend.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
+    }
 }

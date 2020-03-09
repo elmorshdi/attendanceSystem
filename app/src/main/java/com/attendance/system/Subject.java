@@ -14,9 +14,13 @@ class Subject {
 
     }
 
+    public Subject() {
+    }
+
     public String getDrname() {
         return drname;
     }
+
     public void setDrname(String drname) {
         this.drname = drname;
     }
@@ -24,6 +28,7 @@ class Subject {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -31,11 +36,9 @@ class Subject {
     public String getCode() {
         return code;
     }
+
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public Subject() {
     }
 
     public long getNumoflecture() {

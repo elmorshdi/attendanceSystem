@@ -20,11 +20,10 @@ import com.google.firebase.database.ValueEventListener;
 public class Doctor_Account_Activity extends AppCompatActivity {
     String idtxt, nametxt, passwordtxt, emailtxt, TAG;
     EditText name, password, email;
-    private DatabaseReference mdata;
-    private DatabaseReference mDatabase;
     SharedPreferences prf;
     TextView textView;
-
+    private DatabaseReference mdata;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,10 +21,10 @@ import java.util.ArrayList;
 
 public class Record_Attend_Activity extends AppCompatActivity {
     int year = 2020, month = 7, day = 9;
-    EditText editdat,editid ,editccode;
+    EditText editdat, editid, editccode;
     TextView textView;
     String date, cousecode, id, tag;
-    ArrayList<String>arrayList=new ArrayList<String>();
+    ArrayList<String> arrayList = new ArrayList<String>();
     SharedPreferences pref;
 
     @Override
@@ -33,10 +33,10 @@ public class Record_Attend_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_recordattend);
 
 
-        textView=findViewById(R.id.numtxt);
+        textView = findViewById(R.id.numtxt);
         editdat = findViewById(R.id.datepicker);
-        editid =findViewById(R.id.stu_id);
-        editccode =findViewById(R.id.cours_code);
+        editid = findViewById(R.id.stu_id);
+        editccode = findViewById(R.id.cours_code);
 
         pref = getSharedPreferences("id", MODE_PRIVATE);
         if (pref.contains("cours_code")) {
@@ -67,32 +67,31 @@ public class Record_Attend_Activity extends AppCompatActivity {
     }
 
 
-
     private void showdatediloge() {
 
         DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                editdat.setText(dayOfMonth + "-" + month+1 + "-" + year);
+                editdat.setText(dayOfMonth + "-" + month + 1 + "-" + year);
 
             }
         };
 
 
-        DatePickerDialog datePickerDialog= new DatePickerDialog(Record_Attend_Activity.this,  listener, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(Record_Attend_Activity.this, listener, year, month, day);
 
         datePickerDialog.show();
 
     }
 
     public void go_home(View view) {
-        Intent intent= new Intent(Record_Attend_Activity.this,HomeActivity.class);
+        Intent intent = new Intent(Record_Attend_Activity.this, HomeActivity.class);
         startActivity(intent);
     }
 
     public void goto_qr(View view) {
-        Intent intent= new Intent(Record_Attend_Activity.this, Scan_Activity.class);
+        Intent intent = new Intent(Record_Attend_Activity.this, Scan_Activity.class);
         startActivity(intent);
     }
 
@@ -106,9 +105,9 @@ public class Record_Attend_Activity extends AppCompatActivity {
             if (arrayList.contains(id))
                 Toast.makeText(this, "duplicate id", Toast.LENGTH_SHORT).show();
 
-                arrayList.add(id);
-                saveArrayList(arrayList, "all_id");
-                Toast.makeText(this, " id added", Toast.LENGTH_SHORT).show();
+            arrayList.add(id);
+            saveArrayList(arrayList, "all_id");
+            Toast.makeText(this, " id added", Toast.LENGTH_SHORT).show();
 
         } else editid.setError("add id");
 

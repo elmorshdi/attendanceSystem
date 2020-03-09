@@ -12,8 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Add_subjectActivity extends AppCompatActivity {
-    EditText ed_name,ed_code,ed_drname;
-    String name,code,drname;
+    EditText ed_name, ed_code, ed_drname;
+    String name, code, drname;
     private DatabaseReference mDatabase;
 
     @Override
@@ -22,9 +22,9 @@ public class Add_subjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_addsubject);
 
 
-        ed_name=findViewById(R.id.ed_name);
-        ed_drname=findViewById(R.id.ed_drname);
-        ed_code=findViewById(R.id.ed_code);
+        ed_name = findViewById(R.id.ed_name);
+        ed_drname = findViewById(R.id.ed_drname);
+        ed_code = findViewById(R.id.ed_code);
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -36,12 +36,11 @@ public class Add_subjectActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void add_cours(View view)
-    {
+    public void add_cours(View view) {
 
-        name=ed_name.getText().toString();
-        code=ed_code.getText().toString();
-        drname= ed_drname.getText().toString();
+        name = ed_name.getText().toString();
+        code = ed_code.getText().toString();
+        drname = ed_drname.getText().toString();
         if (name.isEmpty() || name.equals(" ")) {
             ed_name.setError("enter name");
         } else if (code.isEmpty() || code.equals(" ")) {

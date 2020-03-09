@@ -20,13 +20,13 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class studentFragment extends Fragment {
+public class Student_Fragment extends Fragment {
     private EditText email, password, confirm_password, fullname, id;
     private String emailtext, passwordtext, confirm_passwordtext, idtxt, fnametxt;
     private DatabaseReference mDatabase;
     private SharedPreferences pref;
 
-    public studentFragment() {
+    public Student_Fragment() {
         // Required empty public constructor
     }
 
@@ -75,7 +75,7 @@ public class studentFragment extends Fragment {
                     confirm_password.setError("password not match");
                 } else {
 
-                    student student = new student(fnametxt, emailtext, idtxt, passwordtext);
+                    Student student = new Student(emailtext, idtxt, fnametxt, passwordtext);
                     mDatabase.child("student").child(student.getId()).setValue(student);
                     studentlogin(student.getId());
                 }
@@ -93,7 +93,7 @@ public class studentFragment extends Fragment {
         editor.putString("susername", id);
         editor.putString("spassword", passwordtext);
         editor.apply();
-        Intent intent = new Intent(getActivity(), student_home_Activity.class);
+        Intent intent = new Intent(getActivity(), Student_Home_Activity.class);
         startActivity(intent);
         getActivity().finish();
     }

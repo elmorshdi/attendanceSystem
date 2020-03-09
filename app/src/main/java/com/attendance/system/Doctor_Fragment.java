@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class doctorFragment extends Fragment {
+public class Doctor_Fragment extends Fragment {
 
     private EditText dr_email, dr_password, dr_confirm_password,dr_fname,dr_id,dr_lname;
     private String dr_emailtext, dr_passwordtext, dr_confirm_passwordtext ,dr_idtxt,dr_fnametxt,dr_lnametxt;
@@ -28,7 +28,7 @@ public class doctorFragment extends Fragment {
     SharedPreferences pref;
 
 
-    public doctorFragment() {
+    public Doctor_Fragment() {
         // Required empty public constructor
     }
 
@@ -77,7 +77,7 @@ public class doctorFragment extends Fragment {
                     dr_confirm_password.setError("password not match");
                 } else {
 
-                    doctor doctor=new doctor(dr_fnametxt,dr_idtxt,dr_emailtext,dr_passwordtext);
+                    Doctor doctor = new Doctor(dr_fnametxt, dr_idtxt, dr_emailtext, dr_passwordtext);
                     mDatabase.child("doctor").child(doctor.getId()).setValue(doctor);
                     doctorlogin(dr_idtxt);
                 }

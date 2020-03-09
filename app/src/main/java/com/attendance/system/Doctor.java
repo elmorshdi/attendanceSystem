@@ -2,16 +2,15 @@ package com.attendance.system;
 
 import java.util.ArrayList;
 
-public class doctor {
+public class Doctor {
     private String name, id, email, passward, type;
-    private ArrayList<subject> subjects=new ArrayList<>();
+    private ArrayList<Subject> Subjects = new ArrayList<>();
 
 
-
-    public doctor() {
+    public Doctor() {
     }
 
-    public doctor(String name, String id, String email, String passward) {
+    public Doctor(String name, String id, String email, String passward) {
         this.name = name;
         this.id = id;
         this.email = email;
@@ -60,11 +59,11 @@ public class doctor {
         this.passward = passward;
     }
 
-    public ArrayList<subject> getSubjects() {
-        return subjects;
+    public ArrayList<Subject> getSubjects() {
+        return Subjects;
     }
 
-    public void setSubjects(ArrayList<subject> subjects) {
-        this.subjects = subjects;
+    public void setSubjects(ArrayList<Subject> Subjects) {
+        this.Subjects = Subjects;
     }
 }

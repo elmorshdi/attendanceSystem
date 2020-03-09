@@ -13,38 +13,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Get_doc_attendActivity"></activity>
         <activity
-            android:name=".listviewActivity"
+            android:name=".Listed_Toupdate_Activity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".student_account_Activity"
+            android:name=".Student_Account_Activity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".doctor_account_Activity"
+            android:name=".Doctor_Account_Activity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".student_home_Activity"
+            android:name=".Student_Home_Activity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".scanActivity"
+            android:name=".Scan_Activity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".addsubjectActivity"
+            android:name=".Add_subjectActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".recordattendActivity"
+            android:name=".Record_Attend_Activity"
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".sign_up"
+            android:name=".SignUp_Activity"
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".splashActivity"
+            android:name=".Splash_Activity"
             android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

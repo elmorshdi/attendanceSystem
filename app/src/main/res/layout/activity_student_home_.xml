@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:weightSum="10"
-    tools:context=".student_home_Activity">
+    tools:context=".Student_Home_Activity">
     <RelativeLayout
         android:layout_height="0dp"
         android:layout_width="match_parent"

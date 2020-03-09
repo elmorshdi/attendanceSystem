@@ -1,16 +1,25 @@
 package com.attendance.system;
 
-import java.util.ArrayList;
+import java.util.Map;
 
-class student {
+class Student {
     private String name, email, id, password, type;
-  private ArrayList<subject>subjects=new ArrayList<>();
+    Map<String, Map<String, String>> subjects;
 
-    public student(String name, String email, String id, String password) {
+    public Student(String email, String id, String name, String password) {
         this.name = name;
         this.email = email;
         this.id = id;
         this.password = password;
+    }
+
+    public Student(String email, String id, String name, String password, String type, Map<String, Map<String, String>> subjects) {
+        this.name = name;
+        this.email = email;
+        this.id = id;
+        this.password = password;
+        this.type = type;
+        this.subjects = subjects;
     }
 
     public String getType() {
@@ -29,15 +38,16 @@ class student {
         this.password = password;
     }
 
-    public ArrayList<subject> getSubjects() {
+
+    public Student() {
+    }
+
+    public Map<String, Map<String, String>> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(ArrayList<subject> subjects) {
+    public void setSubjects(Map<String, Map<String, String>> subjects) {
         this.subjects = subjects;
-    }
-
-    public student() {
     }
 
     public String getName() {

@@ -32,17 +32,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void recordact(View view) {
-        Intent intent = new Intent(HomeActivity.this,recordattendActivity.class);
+        Intent intent = new Intent(HomeActivity.this, Record_Attend_Activity.class);
         startActivity(intent);
     }
     public void go_addsub(View view) {
-        Intent intent = new Intent(HomeActivity.this,addsubjectActivity.class);
+        Intent intent = new Intent(HomeActivity.this, Add_subjectActivity.class);
         startActivity(intent);
     }
 
     public void my_account(View view) {
-        Intent intent = new Intent(this, doctor_account_Activity.class);
+        Intent intent = new Intent(this, Doctor_Account_Activity.class);
         intent.putExtra("id", id);
+        startActivity(intent);
+    }
+
+    public void get_attend(View view) {
+        Intent intent = new Intent(HomeActivity.this, Get_doc_attendActivity.class);
         startActivity(intent);
     }
 }

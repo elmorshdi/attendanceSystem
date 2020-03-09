@@ -7,7 +7,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class student_home_Activity extends AppCompatActivity {
+public class Student_Home_Activity extends AppCompatActivity {
     SharedPreferences prf;
     String id;
 
@@ -21,7 +21,7 @@ public class student_home_Activity extends AppCompatActivity {
     }
 
     public void st_accunt(View view) {
-        Intent intent = new Intent(this, student_account_Activity.class);
+        Intent intent = new Intent(this, Student_Account_Activity.class);
         intent.putExtra("id", id);
         startActivity(intent);
     }

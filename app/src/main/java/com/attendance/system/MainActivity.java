@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         pref = getSharedPreferences("user_details", MODE_PRIVATE);
         if (pref.contains("susername") && pref.contains("spassword")) {
-            Intent intent = new Intent(this, student_home_Activity.class);
+            Intent intent = new Intent(this, Student_Home_Activity.class);
             startActivity(intent);
             finish();
         } else if (pref.contains("dusername") && pref.contains("dpassword")) {
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void go_signup(View view) {
-        Intent intent = new Intent(this, sign_up.class);
+        Intent intent = new Intent(this, SignUp_Activity.class);
         startActivity(intent);
         finish();
     }
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("susername", id);
         editor.putString("spassword", passtxt);
         editor.apply();
-        Intent intent = new Intent(this, student_home_Activity.class);
+        Intent intent = new Intent(this, Student_Home_Activity.class);
         intent.putExtra("id", id);
         startActivity(intent);
         finish();

@@ -11,10 +11,10 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class sign_up extends AppCompatActivity {
+public class SignUp_Activity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-    PageAdapter pageAdapter;
+    Page_Adapter pageAdapter;
     TabItem tabdoctor;
     TabItem tabstudent;
 
@@ -28,18 +28,18 @@ public class sign_up extends AppCompatActivity {
         tabstudent = findViewById(R.id.tab2);
         viewPager = findViewById(R.id.viewPager);
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new Page_Adapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
     public void go_signin(View view) {
-        Intent intent = new Intent(sign_up.this, MainActivity.class);
+        Intent intent = new Intent(SignUp_Activity.this, MainActivity.class);
         startActivity(intent);
 
     }
 
     public void go_home(View view) {
-        Intent intent = new Intent(sign_up.this, MainActivity.class);
+        Intent intent = new Intent(SignUp_Activity.this, MainActivity.class);
         startActivity(intent);
     }
 }

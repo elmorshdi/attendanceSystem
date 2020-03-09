@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
-public class scanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class Scan_Activity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     // Camera Permission Request Code
     private  final int CAMERA_PERMISSION_REQUEST_CODE = 2;
 
@@ -43,10 +43,10 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
         setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
-        if (ContextCompat.checkSelfPermission(scanActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(Scan_Activity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
             // Request Camera Permission
-            ActivityCompat.requestPermissions(scanActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(Scan_Activity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
         }
 
     }
@@ -59,7 +59,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
               onStart();
           } else {
               onBackPressed();
-              Toast.makeText(scanActivity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
+              Toast.makeText(Scan_Activity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
           }
       }
     }

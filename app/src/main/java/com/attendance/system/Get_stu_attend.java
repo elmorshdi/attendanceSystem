@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +27,7 @@ public class Get_stu_attend extends AppCompatActivity {
     DatabaseReference mDatabase;
     ArrayList<Student> Students;
     long total;
-    String sub_code, idtxt;
+    String sub_code, id_txt;
     EditText editText;
     Button button;
     RecyclerView recyclerView;
@@ -37,15 +36,18 @@ public class Get_stu_attend extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_stu_attend);
+        //
+        button = findViewById(R.id.bu2);
+        editText = findViewById(R.id.code_s2);
         recyclerView = findViewById(R.id.recyclerview2);
-        SharedPreferences prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        idtxt = prf.getString("susername", null);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Students = new ArrayList<>();
-        button = findViewById(R.id.bu2);
-        editText = findViewById(R.id.code_s2);
+        //
+        SharedPreferences prf = getSharedPreferences("user_details", MODE_PRIVATE);
+        id_txt = prf.getString("susername", null);
 
+        //to disable button in empty input
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -76,16 +78,9 @@ public class Get_stu_attend extends AppCompatActivity {
                 Log.e(TAG, "onDataChange: " + snapshot);
                 total = snapshot.child("subject").child(sub_code).child("numoflecture").getValue(long.class);
 
-                Student student = snapshot.child("student").child(idtxt).getValue(Student.class);
+                Student student = snapshot.child("student").child(id_txt).getValue(Student.class);
                 Students.add(student);
 
-//                for (DataSnapshot data : snapshot.child("student").getValue()) {
-//                    Log.e(TAG, "onDataChange: " + data);
-//
-//                    data.getValue(Student.class);
-//
-//
-//                }
                 Radapter Radapter = new Radapter(Students, sub_code, total);
                 recyclerView.setAdapter(Radapter);
 
@@ -95,11 +90,9 @@ public class Get_stu_attend extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Get_stu_attend.this, "nnn", Toast.LENGTH_LONG).show();
-
-
             }
         });
+
 
     }
 }

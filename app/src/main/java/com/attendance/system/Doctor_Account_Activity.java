@@ -67,9 +67,9 @@ public class Doctor_Account_Activity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-
-        super.onStart();
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 
     public void Update(View view) {
@@ -97,5 +97,7 @@ public class Doctor_Account_Activity extends AppCompatActivity {
     public void go_home(View view) {
         Intent intent = new Intent(Doctor_Account_Activity.this, HomeActivity.class);
         startActivity(intent);
+        finish();
+
     }
 }

@@ -31,9 +31,16 @@ public class Add_subjectActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
     public void go_home(View view) {
         Intent intent = new Intent(Add_subjectActivity.this, HomeActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void add_cours(View view) {

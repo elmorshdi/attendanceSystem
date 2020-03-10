@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Listed_Toupdate_Activity extends AppCompatActivity {
     ListView listView;
@@ -31,7 +33,9 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
     SharedPreferences pref;
     String date, sub_code;
     long total;
+    private static final String TAG = "Listed_Toupdate_Activit";
     private DatabaseReference mData, mDatabase;
+    ArrayList<Student> students;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -42,6 +46,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
 //get date from preference
         pref = getSharedPreferences("id", MODE_PRIVATE);
         arrayList = new ArrayList<>();
+        students = new ArrayList<>();
         arrayList = getArrayList("all_id");
         if (arrayList == null) arrayList = new ArrayList<>();
         date = pref.getString("date", "");
@@ -90,10 +95,12 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void uploud(View view) {
-
-        mData.child(sub_code).child("numoflecture").setValue(total + 1);
-        for (String s : arrayList) {
-            mDatabase.child("student").child(s).child("subjects").child(sub_code).child(date).setValue("true");
+        sendemails();
+        if (!arrayList.isEmpty()) {
+            mData.child(sub_code).child("numoflecture").setValue(total + 1);
+            for (String s : arrayList) {
+                mDatabase.child("student").child(s).child("subjects").child(sub_code).child(date).setValue("true");
+            }
 
         }
 
@@ -105,6 +112,46 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
         adapter.clear();
         editor.remove("cours_code").commit();
         editor.remove("date").commit();
+
+    }
+
+    private void sendemails() {
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.e(TAG, "onDataChange: " + snapshot);
+                for (DataSnapshot data : snapshot.child("student").getChildren()) {
+                    Log.e(TAG, "onDataChange: " + data);
+
+                    Student student = data.getValue(Student.class);
+                    students.add(student);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        for (Student student : students) {
+            int total_lec_s = 0;
+            Map<String, Map<String, String>> subjects = student.getSubjects();
+            if (subjects.containsKey(sub_code)) {
+                Map<String, String> course = subjects.get(sub_code);
+                total_lec_s = course.size();
+            }
+            int total_lec = ((int) total);
+
+            int m = total_lec - total_lec_s;
+            if (m == 3) {
+                Log.e(TAG, "onDataChange: " + "سسسسسسسسسسسسسسسسسسسسسسسسسسس");
+
+                String email = student.getEmail();
+                JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "The number of allowed absences exceeded three lectures");
+                mail.execute();
+            }
+
+        }
 
     }
 }

@@ -52,6 +52,11 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {// Check Camera permission is granted or not

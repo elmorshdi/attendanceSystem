@@ -33,10 +33,15 @@ public class SignUp_Activity extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
-    public void go_signin(View view) {
+    @Override
+    public void onBackPressed() {
+        go_signin();
+    }
+
+    public void go_signin() {
         Intent intent = new Intent(SignUp_Activity.this, MainActivity.class);
         startActivity(intent);
-
+        finish();
     }
 
     public void go_home(View view) {

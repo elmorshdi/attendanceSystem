@@ -59,6 +59,11 @@ public class Record_Attend_Activity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+    @Override
     protected void onPause() {
         if (editccode.getText().length() > 4)
             saveobject(editccode.getText().toString(), "cours_code");
@@ -88,6 +93,8 @@ public class Record_Attend_Activity extends AppCompatActivity {
     public void go_home(View view) {
         Intent intent = new Intent(Record_Attend_Activity.this, HomeActivity.class);
         startActivity(intent);
+        finish();
+
     }
 
     public void goto_qr(View view) {
@@ -117,7 +124,6 @@ public class Record_Attend_Activity extends AppCompatActivity {
     public void uploud(View view) {
         Intent intent = new Intent(Record_Attend_Activity.this, Listed_Toupdate_Activity.class);
         startActivity(intent);
-        finish();
     }
 
     private void saveobject(String s, String key) {

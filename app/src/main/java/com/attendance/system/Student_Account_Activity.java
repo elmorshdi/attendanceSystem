@@ -63,16 +63,17 @@ public class Student_Account_Activity extends AppCompatActivity {
         mdata.addValueEventListener(listener);
     }
 
-    @Override
-    protected void onStart() {
-
-
-        super.onStart();
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
+
 
     public void go_home(View view) {
         Intent intent = new Intent(Student_Account_Activity.this, Student_Home_Activity.class);
         startActivity(intent);
+        finish();
+
     }
 
     public void Update(View view) {

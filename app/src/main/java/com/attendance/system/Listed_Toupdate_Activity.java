@@ -101,7 +101,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
             for (String s : arrayList) {
                 mDatabase.child("student").child(s).child("subjects").child(sub_code).child(date).setValue("true");
             }
-
+            sendemails();
         }
 
 
@@ -115,6 +115,11 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
     private void sendemails() {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

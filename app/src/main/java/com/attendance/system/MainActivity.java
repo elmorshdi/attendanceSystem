@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
     private void getpassword(final String typee) {
         ValueEventListener Listener = new ValueEventListener() {
             @Override

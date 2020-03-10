@@ -26,6 +26,11 @@ public class Student_Home_Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
     public void sign_out(View view) {
         SharedPreferences.Editor editor = prf.edit();
         editor.clear();

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:weightSum="10"
-    tools:context=".Student_Home_Activity">
+    tools:context=".StudentHomeActivity">
     <RelativeLayout
         android:layout_height="0dp"
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
-            android:onClick="st_accunt"
+            android:onClick="stAccount"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -86,7 +86,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
-            android:onClick="get_attend"
+            android:onClick="getAttend"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp">
 
@@ -128,7 +128,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
-            android:onClick="sign_out"
+            android:onClick="signOut"
             app:cardCornerRadius="8dp"
             android:backgroundTint="@color/zxing_transparent"
             app:cardElevation="8dp">

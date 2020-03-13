@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="15"
-    tools:context=".Listed_Toupdate_Activity"
+    tools:context=".ListedToUpdateActivity"
     tools:ignore="ExtraText">
 
     <RelativeLayout
@@ -60,15 +60,32 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/colorPrimaryDark" />
-    <Button
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:background="@drawable/bu2"
-        android:onClick="uploud"
-        android:text="  aploud  "
-        android:textColor="@android:color/white" />
+        android:orientation="horizontal">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:background="@drawable/bu2"
+            android:onClick="uploud"
+            android:text="  aploud  "
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:background="@drawable/bu2"
+            android:onClick="send"
+            android:text="  Send  "
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 </LinearLayout>
 

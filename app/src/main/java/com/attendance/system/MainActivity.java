@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,13 +18,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     EditText user, password;
-    RadioGroup radioGroup;
-    RadioButton radiostudent, radiolecture;
+    RadioButton radioStudent, radioLecture;
     DatabaseReference mDatabase;
-    String id, passtxt, firepass;
+    String id, passTxt, firePass;
     String TAG = " MainActivity Error";
     SharedPreferences pref;
     ProgressDialog progressDialog;
@@ -35,81 +35,70 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pref = getSharedPreferences("user_details", MODE_PRIVATE);
-        if (pref.contains("susername") && pref.contains("spassword")) {
-            Intent intent = new Intent(this, Student_Home_Activity.class);
-            startActivity(intent);
-            finish();
-        } else if (pref.contains("dusername") && pref.contains("dpassword")) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-            finish();
+        if (pref.contains("student")) {
+            studentLogIn();
+        } else if (pref.contains("doctor")) {
+            doctorLogIn();
         }
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         user = findViewById(R.id.loginemail);
         password = findViewById(R.id.loginpassword);
-        radioGroup = findViewById(R.id.RadioGroup);
-        radiolecture = findViewById(R.id.Radiolecturer);
-        radiostudent = findViewById(R.id.RadioStudent);
+        radioLecture = findViewById(R.id.Radiolecturer);
+        radioStudent = findViewById(R.id.RadioStudent);
         progressDialog = new ProgressDialog(MainActivity.this);
 
 
     }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
-    private void getpassword(final String typee) {
-        ValueEventListener Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // email= dataSnapshot.child("doctor").child(id).child("email").getValue(String.class);
-                firepass = dataSnapshot.child(typee).child(id).child("password").getValue(String.class);
-                if (firepass == null) {
-                    user.setError("id not correct");
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                // ...
-            }
+    public void logIn(View view) {
 
 
-        };
-        mDatabase.addValueEventListener(Listener);
-
-    }
-
-    public void login(View view) {
-
-
-        passtxt = password.getText().toString();
+        passTxt = password.getText().toString();
         id = user.getText().toString();
 
-        if (radiostudent.isChecked()) {
+        if (radioStudent.isChecked()) {
             progressDialog.setMessage("Please wait...");
             progressDialog.setIndeterminate(false);
             progressDialog.setCancelable(false);
             progressDialog.show();
+
             Thread thread = new Thread() {
 
                 @Override
                 public void run() {
                     try {
 
-                        getpassword("student");
                         // new task().execute("student");
                         sleep(2000);
-                        if (passtxt.equals(firepass)) {
-                            studentlogin(id);
-                        } else {
-                            Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
-                        }
+                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Student student = dataSnapshot.child("student").child(id).getValue(Student.class);
+                                assert student != null;
+                                firePass = student.getPassword();
+                                if (firePass.equals(passTxt)) {
+                                    progressDialog.cancel();
+                                    studentLogIn();
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    Gson gson = new Gson();
+                                    String studentInJson = gson.toJson(student);
+                                    Log.e(TAG, student + "\n" + studentInJson);
+                                    editor.putString("student", studentInJson);
+                                    editor.apply();
+                                } else {
+                                    progressDialog.cancel();
+                                    Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
+                                }
+
+                                Log.e(TAG, student + "\n" + firePass + "\n" + password);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -119,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             };
             thread.start();
 
-        } else if (radiolecture.isChecked()) {
+        } else if (radioLecture.isChecked()) {
             progressDialog.setMessage("Please wait...");
             progressDialog.setIndeterminate(false);
             progressDialog.setCancelable(false);
@@ -129,13 +118,39 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        getpassword("doctor");
                         sleep(2000);
-                        if (passtxt.equals(firepass)) {
-                            doctorlogin(id);
-                        } else {
-                            Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
-                        }
+
+                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Doctor doctor = dataSnapshot.child("doctor").child(id).getValue(Doctor.class);
+                                assert doctor != null;
+                                firePass = doctor.getPassword();
+                                if (firePass.equals(passTxt)) {
+                                    progressDialog.cancel();
+                                    doctorLogIn();
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    Gson gson = new Gson();
+                                    String studentInJson = gson.toJson(doctor);
+                                    Log.e(TAG, doctor + "\n" + studentInJson);
+                                    editor.putString("doctor", studentInJson);
+                                    editor.apply();
+                                } else {
+                                    progressDialog.cancel();
+                                    Toast.makeText(MainActivity.this, "password not correct", Toast.LENGTH_SHORT).show();
+                                }
+
+                                Log.e(TAG, doctor + "\n" + firePass + "\n" + password);
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -146,91 +161,31 @@ public class MainActivity extends AppCompatActivity {
             thread.start();
 
         } else {
-
-            radiolecture.setError("check the box");
-            Toast.makeText(MainActivity.this, "hhhhh", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "check  student or doctor first", Toast.LENGTH_SHORT).show();
         }
 
     }
 
 
-    public void go_signup(View view) {
-        Intent intent = new Intent(this, SignUp_Activity.class);
+    public void goSignUp(View view) {
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void studentlogin(String id) {
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("susername", id);
-        editor.putString("spassword", passtxt);
-        editor.apply();
-        Intent intent = new Intent(this, Student_Home_Activity.class);
-        intent.putExtra("id", id);
+    private void studentLogIn() {
+
+        Intent intent = new Intent(this, StudentHomeActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void doctorlogin(String id) {
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("dusername", id);
-        editor.putString("dpassword", passtxt);
-        editor.apply();
+    private void doctorLogIn() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("id", id);
         startActivity(intent);
         finish();
     }
 
-   /* @SuppressLint("StaticFieldLeak")
-    protected class task extends AsyncTask<String, String, String> {
 
-
-        @Override
-        protected String doInBackground(final String... strings) {
-            ValueEventListener Listener = new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // email= dataSnapshot.child("doctor").child(id).child("email").getValue(String.class);
-                    firepass = dataSnapshot.child(strings[0]).child(id).child("password").getValue(String.class);
-                    if (firepass == null) {
-                        user.setError("id not correct");
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                    Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                    // ...
-                }
-
-
-            };
-            mDatabase.addValueEventListener(Listener);
-
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-           // id = user.getText().toString();
-
-
-            progressDialog.setMessage("Please wait...");
-            progressDialog.setIndeterminate(false);
-            progressDialog.setCancelable(false);
-          //  progressDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            //progressDialog.cancel();
-
-            super.onPostExecute(s);
-        }
-    }
-*/
 
 }

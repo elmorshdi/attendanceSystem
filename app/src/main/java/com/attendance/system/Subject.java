@@ -1,15 +1,15 @@
 package com.attendance.system;
 
 class Subject {
-    private String name, code, drname;
-    private long numoflecture;
+    private String name, code, drName;
+    private long numOfLecture;
 
 
-    Subject(String code, String name, String drname, long numoflecture) {
+    Subject(String code, String name, String drName, long numOfLecture) {
         this.code = code;
         this.name = name;
-        this.drname = drname;
-        this.numoflecture = numoflecture;
+        this.drName = drName;
+        this.numOfLecture = numOfLecture;
 
 
     }
@@ -17,12 +17,12 @@ class Subject {
     public Subject() {
     }
 
-    public String getDrname() {
-        return drname;
+    public String getDrName() {
+        return drName;
     }
 
-    public void setDrname(String drname) {
-        this.drname = drname;
+    public void setDrName(String drName) {
+        this.drName = drName;
     }
 
     public String getName() {
@@ -41,11 +41,11 @@ class Subject {
         this.code = code;
     }
 
-    public long getNumoflecture() {
-        return numoflecture;
+    public long getNumOfLecture() {
+        return numOfLecture;
     }
 
-    public void setNumoflecture(long numoflecture) {
-        this.numoflecture = numoflecture;
+    public void setNumOfLecture(long numOfLecture) {
+        this.numOfLecture = numOfLecture;
     }
 }

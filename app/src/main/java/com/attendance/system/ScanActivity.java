@@ -23,12 +23,12 @@ import java.util.ArrayList;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
-public class Scan_Activity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     // Camera Permission Request Code
     private final int CAMERA_PERMISSION_REQUEST_CODE = 2;
 
     ZXingScannerView mScannerView;
-    ArrayList<String> arrayListscand = new ArrayList<String>();
+    ArrayList<String> arrayListScanned = new ArrayList<String>();
     private BeepManager beepManager;
     private String lastText;
 
@@ -43,10 +43,10 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
         setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
-        if (ContextCompat.checkSelfPermission(Scan_Activity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(ScanActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 
             // Request Camera Permission
-            ActivityCompat.requestPermissions(Scan_Activity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(ScanActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
         }
 
     }
@@ -56,6 +56,7 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
         finish();
         super.onBackPressed();
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -64,7 +65,7 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
                 onStart();
             } else {
                 onBackPressed();
-                Toast.makeText(Scan_Activity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ScanActivity.this, "Camera  permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -107,22 +108,22 @@ public class Scan_Activity extends AppCompatActivity implements ZXingScannerView
 
     @Override
     public void handleResult(Result result) {
-        arrayListscand = getArrayList("all_id");
+        arrayListScanned = getArrayList("all_id");
 
         if (result.getText() == null || result.getText().equals(lastText)) {
             // Prevent duplicate scans
-            if (arrayListscand.contains(result.getText()))
+            if (arrayListScanned.contains(result.getText()))
                 Toast.makeText(this, "duplicate id", Toast.LENGTH_SHORT).show();
 
             onStart();
         } else {
             lastText = result.getText();
-            arrayListscand.add(result.getText());
+            arrayListScanned.add(result.getText());
             beepManager.playBeepSoundAndVibrate();
             Toast.makeText(this, result.getText(), Toast.LENGTH_SHORT).show();
             onStart();
         }
-        saveArrayList(arrayListscand, "all_id");
+        saveArrayList(arrayListScanned, "all_id");
 
     }
 

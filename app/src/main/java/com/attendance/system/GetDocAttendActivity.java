@@ -1,6 +1,5 @@
 package com.attendance.system;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +22,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Get_stu_attend extends AppCompatActivity {
+
+public class GetDocAttendActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     DatabaseReference mDatabase;
     ArrayList<Student> Students;
     long total;
-    String sub_code, id_txt;
+    String subCode;
     EditText editText;
     Button button;
     RecyclerView recyclerView;
@@ -35,19 +36,16 @@ public class Get_stu_attend extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_stu_attend);
-        //
-        button = findViewById(R.id.bu2);
-        editText = findViewById(R.id.code_s2);
-        recyclerView = findViewById(R.id.recyclerview2);
+        setContentView(R.layout.get_doc_attend);
+
+        recyclerView = findViewById(R.id.recyclerview);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Students = new ArrayList<>();
-        //
-        SharedPreferences prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        id_txt = prf.getString("susername", null);
+        button = findViewById(R.id.bu);
+        editText = findViewById(R.id.code_s);
 
-        //to disable button in empty input
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -71,28 +69,33 @@ public class Get_stu_attend extends AppCompatActivity {
     }
 
     public void show(View view) {
-        sub_code = editText.getText().toString();
+        subCode = editText.getText().toString();
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e(TAG, "onDataChange: " + snapshot);
-                total = snapshot.child("subject").child(sub_code).child("numoflecture").getValue(long.class);
+                total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
 
-                Student student = snapshot.child("student").child(id_txt).getValue(Student.class);
-                Students.add(student);
+                for (DataSnapshot data : snapshot.child("student").getChildren()) {
+                    Log.e(TAG, "onDataChange: " + data);
 
-                Radapter Radapter = new Radapter(Students, sub_code, total);
-                recyclerView.setAdapter(Radapter);
+                    Student student = data.getValue(Student.class);
+                    Students.add(student);
 
-                Students = new ArrayList<>();
+                }
+                RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, subCode, total);
+
+                recyclerView.setAdapter(RecyclerAdapter);
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(GetDocAttendActivity.this, "fail", Toast.LENGTH_LONG).show();
+
+
             }
         });
-
 
     }
 

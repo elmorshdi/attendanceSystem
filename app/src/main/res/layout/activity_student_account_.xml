@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Student_Account_Activity">
+    tools:context=".StudentAccountActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -27,7 +27,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:onClick="go_home"
+            android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
             android:tint="#ffffff" />
     </RelativeLayout>
@@ -41,6 +41,15 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Here You Can Edit Your Data "
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_name_text_input_layout"
         android:layout_width="match_parent"
@@ -106,7 +115,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/bu2"
-        android:onClick="Update"
+        android:onClick="update"
         android:text="  Update   "
         android:textColor="@android:color/white"
         android:textSize="30sp" />

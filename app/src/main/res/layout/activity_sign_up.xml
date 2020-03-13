@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".SignUp_Activity">
+    tools:context=".SignUpActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -27,7 +27,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:onClick="go_home"
+            android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
             android:tint="#ffffff" />
     </RelativeLayout>

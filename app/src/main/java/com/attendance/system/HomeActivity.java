@@ -3,9 +3,15 @@ package com.attendance.system;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -17,38 +23,46 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        id = prf.getString("dusername", null);
-
+        Doctor doctor = getDoctor("doctor");
+        Log.e("doctor", doctor.getName());
 
     }
 
-    public void sign_out(View view) {
+    public Doctor getDoctor(String key) {
+        SharedPreferences prefs = getSharedPreferences("user_details", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<Doctor>() {
+        }.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public void signOut(View view) {
         SharedPreferences.Editor editor = prf.edit();
         editor.clear();
-        editor.commit();
+        editor.apply();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void recordact(View view) {
-        Intent intent = new Intent(HomeActivity.this, Record_Attend_Activity.class);
+    public void record(View view) {
+        Intent intent = new Intent(HomeActivity.this, RecordAttendActivity.class);
         startActivity(intent);
     }
 
-    public void go_addsub(View view) {
-        Intent intent = new Intent(HomeActivity.this, Add_subjectActivity.class);
+    public void goAddSub(View view) {
+        Intent intent = new Intent(HomeActivity.this, AddSubjectActivity.class);
         startActivity(intent);
     }
 
-    public void my_account(View view) {
-        Intent intent = new Intent(this, Doctor_Account_Activity.class);
-        intent.putExtra("id", id);
+    public void myAccount(View view) {
+        Intent intent = new Intent(this, DoctorAccountActivity.class);
         startActivity(intent);
     }
 
-    public void get_attend(View view) {
-        Intent intent = new Intent(HomeActivity.this, Get_doc_attendActivity.class);
+    public void getAttend(View view) {
+        Intent intent = new Intent(HomeActivity.this, GetDocAttendActivity.class);
         startActivity(intent);
     }
 

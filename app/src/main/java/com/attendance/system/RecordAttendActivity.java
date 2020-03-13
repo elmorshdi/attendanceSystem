@@ -19,9 +19,9 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class Record_Attend_Activity extends AppCompatActivity {
+public class RecordAttendActivity extends AppCompatActivity {
     int year = 2020, month = 7, day = 9;
-    EditText editdat, editid, editccode;
+    EditText edDate, edId, edCCode;
     TextView textView;
     String date, cousecode, id, tag;
     ArrayList<String> arrayList = new ArrayList<String>();
@@ -34,20 +34,20 @@ public class Record_Attend_Activity extends AppCompatActivity {
 
 
         textView = findViewById(R.id.numtxt);
-        editdat = findViewById(R.id.datepicker);
-        editid = findViewById(R.id.stu_id);
-        editccode = findViewById(R.id.cours_code);
+        edDate = findViewById(R.id.datepicker);
+        edId = findViewById(R.id.stu_id);
+        edCCode = findViewById(R.id.cours_code);
 
         pref = getSharedPreferences("id", MODE_PRIVATE);
         if (pref.contains("cours_code")) {
-            editccode.setText(get_object("cours_code"));
+            edCCode.setText(getObject("cours_code"));
         }
         if (pref.contains("date")) {
-            editdat.setText(get_object("date"));
+            edDate.setText(getObject("date"));
         }
         arrayList = getArrayList("all_id");
         if (arrayList == null) arrayList = new ArrayList<String>();
-        editdat.setOnClickListener(new View.OnClickListener() {
+        edDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showdatediloge();
@@ -63,11 +63,12 @@ public class Record_Attend_Activity extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }
+
     @Override
     protected void onPause() {
-        if (editccode.getText().length() > 4)
-            saveobject(editccode.getText().toString(), "cours_code");
-        if (editdat.getText().length() > 4) saveobject(editdat.getText().toString(), "date");
+        if (edCCode.getText().length() > 4)
+            saveObject(edCCode.getText().toString(), "cours_code");
+        if (edDate.getText().length() > 4) saveObject(edDate.getText().toString(), "date");
         super.onPause();
     }
 
@@ -78,35 +79,30 @@ public class Record_Attend_Activity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                editdat.setText(dayOfMonth + "-" + month + 1 + "-" + year);
+                month = month + 1;
+                edDate.setText(dayOfMonth + "-" + month + "-" + year);
 
             }
         };
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(Record_Attend_Activity.this, listener, year, month, day);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(RecordAttendActivity.this, listener, year, month, day);
 
         datePickerDialog.show();
 
     }
 
-    public void go_home(View view) {
-        Intent intent = new Intent(Record_Attend_Activity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
 
-    }
-
-    public void goto_qr(View view) {
-        Intent intent = new Intent(Record_Attend_Activity.this, Scan_Activity.class);
+    public void gotoQr(View view) {
+        Intent intent = new Intent(RecordAttendActivity.this, ScanActivity.class);
         startActivity(intent);
     }
 
-    public void addid(View view) {
-        id = editid.getText().toString();
+    public void addId(View view) {
+        id = edId.getText().toString();
         if (!(id.length() < 9)) {
-            id = editid.getText().toString();
-            editid.setText("");
+            id = edId.getText().toString();
+            edId.setText("");
             arrayList = getArrayList("all_id");
             if (arrayList == null) arrayList = new ArrayList<>();
             if (arrayList.contains(id))
@@ -116,17 +112,18 @@ public class Record_Attend_Activity extends AppCompatActivity {
             saveArrayList(arrayList, "all_id");
             Toast.makeText(this, " id added", Toast.LENGTH_SHORT).show();
 
-        } else editid.setError("add id");
+        } else edId.setError("add id");
 
 
     }
 
-    public void uploud(View view) {
-        Intent intent = new Intent(Record_Attend_Activity.this, Listed_Toupdate_Activity.class);
+    public void upLoud(View view) {
+        Intent intent = new Intent(RecordAttendActivity.this, ListedToUpdateActivity.class);
         startActivity(intent);
+
     }
 
-    private void saveobject(String s, String key) {
+    private void saveObject(String s, String key) {
         SharedPreferences prefs = getSharedPreferences("id", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = prefs.edit();
@@ -134,7 +131,7 @@ public class Record_Attend_Activity extends AppCompatActivity {
         editor.commit();
     }
 
-    private String get_object(String key) {
+    private String getObject(String key) {
         SharedPreferences prefs = getSharedPreferences("id", MODE_PRIVATE);
         String s = prefs.getString(key, null);
         return s;
@@ -159,4 +156,9 @@ public class Record_Attend_Activity extends AppCompatActivity {
     }
 
 
+    public void goHome(View view) {
+        Intent intent = new Intent(RecordAttendActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

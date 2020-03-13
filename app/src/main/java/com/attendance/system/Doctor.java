@@ -3,18 +3,18 @@ package com.attendance.system;
 import java.util.ArrayList;
 
 public class Doctor {
-    private String name, id, email, passward;
+    private String name, id, email, password;
     private ArrayList<Subject> Subjects = new ArrayList<>();
 
 
     public Doctor() {
     }
 
-    public Doctor(String name, String id, String email, String passward) {
+    Doctor(String name, String id, String email, String password) {
         this.name = name;
         this.id = id;
         this.email = email;
-        this.passward = passward;
+        this.password = password;
 
     }
 
@@ -43,12 +43,12 @@ public class Doctor {
         this.email = email;
     }
 
-    public String getPassward() {
-        return passward;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassward(String passward) {
-        this.passward = passward;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public ArrayList<Subject> getSubjects() {

@@ -1,5 +1,6 @@
 package com.attendance.system;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,14 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-public class Get_doc_attendActivity extends AppCompatActivity {
+public class GetStuAttendActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     DatabaseReference mDatabase;
-    ListView listView;
     ArrayList<Student> Students;
     long total;
-    String sub_code;
+    String sub_code, idTxt;
     EditText editText;
     Button button;
     RecyclerView recyclerView;
@@ -38,16 +35,19 @@ public class Get_doc_attendActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.get_doc_attend);
-
-        recyclerView = findViewById(R.id.recyclerview);
-
+        setContentView(R.layout.activity_get_stu_attend);
+        //
+        button = findViewById(R.id.bu2);
+        editText = findViewById(R.id.code_s2);
+        recyclerView = findViewById(R.id.recyclerview2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Students = new ArrayList<>();
-        button = findViewById(R.id.bu);
-        editText = findViewById(R.id.code_s);
+        //
+        SharedPreferences prf = getSharedPreferences("user_details", MODE_PRIVATE);
+        idTxt = prf.getString("susername", null);
 
+        //to disable button in empty input
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -76,32 +76,23 @@ public class Get_doc_attendActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e(TAG, "onDataChange: " + snapshot);
-                total = snapshot.child("subject").child(sub_code).child("numoflecture").getValue(long.class);
+                total = snapshot.child("subject").child(sub_code).child("numOfLecture").getValue(long.class);
 
-                for (DataSnapshot data : snapshot.child("student").getChildren()) {
-                    Log.e(TAG, "onDataChange: " + data);
+                Student student = snapshot.child("student").child(idTxt).getValue(Student.class);
+                Students.add(student);
 
-                    Student student = data.getValue(Student.class);
-                    Students.add(student);
+                RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, sub_code, total);
+                recyclerView.setAdapter(RecyclerAdapter);
 
-                }
-                Radapter Radapter = new Radapter(Students, sub_code, total);
+                Students = new ArrayList<>();
 
-                recyclerView.setAdapter(Radapter);
-//                Sadaptor adapter = new Sadaptor(Get_doc_attendActivity.this, Students, sub_code, total);
-//
-//                //attach
-//
-//                listView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Get_doc_attendActivity.this, "nnn", Toast.LENGTH_LONG).show();
-
-
             }
         });
+
 
     }
 

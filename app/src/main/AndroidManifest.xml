@@ -14,40 +14,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Get_stu_attend"></activity>
-        <activity android:name=".Get_doc_attendActivity" />
+        <activity android:name=".GetStuAttendActivity"></activity>
+        <activity android:name=".GetDocAttendActivity" />
         <activity
-            android:name=".Listed_Toupdate_Activity"
+            android:name=".ListedToUpdateActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Student_Account_Activity"
+            android:name=".StudentAccountActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Doctor_Account_Activity"
+            android:name=".DoctorAccountActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Student_Home_Activity"
+            android:name=".StudentHomeActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Scan_Activity"
+            android:name=".ScanActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Add_subjectActivity"
+            android:name=".AddSubjectActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Record_Attend_Activity"
+            android:name=".RecordAttendActivity"
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".SignUp_Activity"
+            android:name=".SignUpActivity"
             android:screenOrientation="fullSensor" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="fullSensor" />
         <activity
-            android:name=".Splash_Activity"
+            android:name=".SplashActivity"
             android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

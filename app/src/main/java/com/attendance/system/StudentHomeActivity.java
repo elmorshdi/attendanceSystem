@@ -7,7 +7,12 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Student_Home_Activity extends AppCompatActivity {
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
+
+public class StudentHomeActivity extends AppCompatActivity {
     SharedPreferences prf;
     String id;
 
@@ -16,12 +21,22 @@ public class Student_Home_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_);
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        id = prf.getString("susername", null);
+        Student student = getStudent("student");
+        id = student.getId();
 
     }
 
-    public void st_accunt(View view) {
-        Intent intent = new Intent(this, Student_Account_Activity.class);
+    public Student getStudent(String key) {
+        SharedPreferences prefs = getSharedPreferences("user_details", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<Student>() {
+        }.getType();
+        return gson.fromJson(json, type);
+    }
+
+    public void stAccount(View view) {
+        Intent intent = new Intent(this, StudentAccountActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);
     }
@@ -31,7 +46,7 @@ public class Student_Home_Activity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void sign_out(View view) {
+    public void signOut(View view) {
         SharedPreferences.Editor editor = prf.edit();
         editor.clear();
         editor.commit();
@@ -40,8 +55,8 @@ public class Student_Home_Activity extends AppCompatActivity {
         finish();
     }
 
-    public void get_attend(View view) {
-        Intent intent = new Intent(this, Get_stu_attend.class);
+    public void getAttend(View view) {
+        Intent intent = new Intent(this, GetStuAttendActivity.class);
         intent.putExtra("id", id);
         startActivity(intent);
     }

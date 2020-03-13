@@ -3,10 +3,10 @@ package com.attendance.system;
 import java.util.Map;
 
 class Student {
-    Map<String, Map<String, String>> subjects;
+    private Map<String, Map<String, String>> subjects;
     private String name, email, id, password, type;
 
-    public Student(String email, String id, String name, String password) {
+    Student(String email, String id, String name, String password) {
         this.name = name;
         this.email = email;
         this.id = id;

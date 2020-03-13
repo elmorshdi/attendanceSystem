@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Listed_Toupdate_Activity extends AppCompatActivity {
+public class ListedToUpdateActivity extends AppCompatActivity {
     ListView listView;
     ArrayAdapter adapter;
     ArrayList<String> arrayList;
@@ -63,7 +63,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                total = snapshot.child(sub_code).child("numoflecture").getValue(long.class);
+                total = snapshot.child(sub_code).child("numOfLecture").getValue(long.class);
             }
 
             @Override
@@ -79,7 +79,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
     }
 
     public void go_attend(View view) {
-        Intent intent = new Intent(Listed_Toupdate_Activity.this, Record_Attend_Activity.class);
+        Intent intent = new Intent(this, RecordAttendActivity.class);
         startActivity(intent);
         finish();
     }
@@ -95,13 +95,12 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void uploud(View view) {
-        sendemails();
         if (!arrayList.isEmpty()) {
-            mData.child(sub_code).child("numoflecture").setValue(total + 1);
+            mData.child(sub_code).child("numOfLecture").setValue(total + 1);
             for (String s : arrayList) {
                 mDatabase.child("student").child(s).child("subjects").child(sub_code).child(date).setValue("true");
             }
-            sendemails();
+
         }
 
 
@@ -120,6 +119,7 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }
+
     private void sendemails() {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -139,24 +139,36 @@ public class Listed_Toupdate_Activity extends AppCompatActivity {
             }
         });
         for (Student student : students) {
-            int total_lec_s = 0;
+            Log.e(TAG, "onDataChange: " + student);
+
+            int totalLecS = 0;
             Map<String, Map<String, String>> subjects = student.getSubjects();
             if (subjects.containsKey(sub_code)) {
                 Map<String, String> course = subjects.get(sub_code);
-                total_lec_s = course.size();
+                assert course != null;
+                totalLecS = course.size();
             }
-            int total_lec = ((int) total);
+            int totalLec = ((int) total);
 
-            int m = total_lec - total_lec_s;
-            if (m == 3) {
+            int m = totalLec - totalLecS;
+            if (m == 2) {
                 Log.e(TAG, "onDataChange: " + "سسسسسسسسسسسسسسسسسسسسسسسسسسس");
 
                 String email = student.getEmail();
-                JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "The number of allowed absences exceeded three lectures");
+                JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "The number of allowed absences exceeded two lectures");
                 mail.execute();
+            } else if (m == 4) {
+                String email = student.getEmail();
+                JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "The number of allowed absences exceeded four lectures");
+                mail.execute();
+
             }
 
         }
 
+    }
+
+    public void send(View view) {
+        sendemails();
     }
 }

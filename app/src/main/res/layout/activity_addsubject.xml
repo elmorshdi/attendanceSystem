@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Add_subjectActivity">
+    tools:context=".AddSubjectActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -26,7 +26,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:onClick="go_home"
+            android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
             android:tint="#ffffff" />
     </RelativeLayout>
@@ -99,7 +99,7 @@ android:layout_gravity="center_horizontal"
         android:textColor="@android:color/white"
 
         android:background="@drawable/bu2"
-        android:onClick="add_cours"
+        android:onClick="addCourse"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text=" Add "

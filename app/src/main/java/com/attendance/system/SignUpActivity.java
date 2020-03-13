@@ -11,12 +11,12 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class SignUp_Activity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-    Page_Adapter pageAdapter;
-    TabItem tabdoctor;
-    TabItem tabstudent;
+    PageAdapter pageAdapter;
+    TabItem tabDoctor;
+    TabItem tabStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,28 +24,28 @@ public class SignUp_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         tabLayout = findViewById(R.id.tablayout);
-        tabdoctor = findViewById(R.id.tab1);
-        tabstudent = findViewById(R.id.tab2);
+        tabDoctor = findViewById(R.id.tab1);
+        tabStudent = findViewById(R.id.tab2);
         viewPager = findViewById(R.id.viewPager);
 
-        pageAdapter = new Page_Adapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
     @Override
     public void onBackPressed() {
-        go_signin();
+        goSignIn();
     }
 
-    public void go_signin() {
-        Intent intent = new Intent(SignUp_Activity.this, MainActivity.class);
+    public void goSignIn() {
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
-    public void go_home(View view) {
-        Intent intent = new Intent(SignUp_Activity.this, MainActivity.class);
+    public void goHome(View view) {
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

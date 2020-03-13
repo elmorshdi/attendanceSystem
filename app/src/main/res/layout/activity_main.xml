@@ -106,7 +106,7 @@
             android:gravity="center"
             android:background="@drawable/bu2"
             android:textColor="@android:color/white"
-            android:onClick="login"
+            android:onClick="logIn"
             android:text="login"
             android:textSize="25sp" />
 
@@ -116,7 +116,7 @@
             android:layout_margin="20dp"
             android:background="@drawable/bu1"
             android:gravity="center"
-            android:onClick="go_signup"
+            android:onClick="goSignUp"
             android:text="sign up"
             android:textSize="20sp" />
     </LinearLayout>

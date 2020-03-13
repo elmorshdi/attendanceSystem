@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Record_Attend_Activity">
+    tools:context=".RecordAttendActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -26,7 +26,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:onClick="go_home"
+            android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
             android:tint="#ffffff" />
     </RelativeLayout>
@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:background="@drawable/bu2"
-            android:onClick="addid"
+            android:onClick="addId"
             android:text="add"
             android:textColor="@android:color/white"
             android:textSize="22sp" />
@@ -120,9 +120,9 @@
             android:id="@+id/scan_bu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:background="@drawable/bu2"
-            android:onClick="goto_qr"
+            android:onClick="gotoQr"
             android:text="  Scan id  "
             android:textColor="@android:color/white"
             android:textSize="22sp" />
@@ -131,10 +131,10 @@
             android:id="@+id/uploud_bu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:background="@drawable/bu2"
-            android:onClick="uploud"
-            android:text="   scaned id   "
+            android:onClick="upLoud"
+            android:text="   scanned id   "
             android:textColor="@android:color/white"
             android:textSize="22sp" />
 

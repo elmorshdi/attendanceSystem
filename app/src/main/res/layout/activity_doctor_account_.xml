@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Doctor_Account_Activity">
+    tools:context=".DoctorAccountActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -27,7 +27,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
-            android:onClick="go_home"
+            android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
             android:tint="#ffffff" />
     </RelativeLayout>
@@ -41,6 +41,16 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Here You Can Edit Your Data "
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_name_text_input_layout"
         android:layout_width="match_parent"
@@ -48,7 +58,7 @@
         android:layout_margin="5dp">
 
         <EditText
-            android:id="@+id/ed_name"
+            android:id="@+id/ed_drname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -60,11 +70,7 @@
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_id_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_email_text_input_layout"
@@ -73,7 +79,7 @@
         android:layout_margin="5dp">
 
         <EditText
-            android:id="@+id/ed_email"
+            android:id="@+id/ed_dremail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -93,13 +99,13 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/ed_password"
+            android:id="@+id/ed_drpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:hint="password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textSize="20sp" />
@@ -112,7 +118,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bu2"
         android:text="  Update   "
-        android:onClick="Update"
+        android:onClick="update"
         android:textColor="@android:color/white"
         android:textSize="30sp" />
 

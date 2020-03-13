@@ -43,7 +43,7 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
-            android:onClick="recordact"
+            android:onClick="record"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -90,7 +90,7 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
-            android:onClick="go_addsub"
+            android:onClick="goAddSub"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="sans-serif-smallcaps"
-                    android:text=" Add Cours"
+                    android:text=" Add Course"
                     android:textColor="@color/colorAccent"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -132,7 +132,7 @@
             android:layout_marginRight="14dp"
             android:layout_marginBottom="14dp"
             app:cardCornerRadius="8dp"
-            android:onClick="my_account"
+            android:onClick="myAccount"
             android:backgroundTint="@color/zxing_transparent"
             app:cardElevation="8dp">
 
@@ -177,7 +177,7 @@
             android:layout_marginBottom="14dp"
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
-            android:onClick="get_attend"
+            android:onClick="getAttend"
             android:backgroundTint="@color/zxing_transparent"
             android:outlineAmbientShadowColor="@color/colorPrimary"
             app:cardCornerRadius="8dp">
@@ -225,7 +225,7 @@
             android:layout_marginLeft="14dp"
             app:cardElevation="8dp"
             android:backgroundTint="@color/zxing_transparent"
-            android:onClick="sign_out"
+            android:onClick="signOut"
             app:cardCornerRadius="8dp">
 
             <LinearLayout

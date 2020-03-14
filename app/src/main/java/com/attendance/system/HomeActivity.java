@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
         Doctor doctor = getDoctor("doctor");
+        id = doctor.getId();
         Log.e("doctor", doctor.getName());
 
     }
@@ -70,5 +71,10 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         super.onBackPressed();
+    }
+
+    public void message(View view) {
+        Intent intent = new Intent(HomeActivity.this, GetMessageActivity.class);
+        startActivity(intent);
     }
 }

@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Doctor doctor = dataSnapshot.child("doctor").child(id).getValue(Doctor.class);
                                 assert doctor != null;
+                                //ToDo fix id not found
                                 firePass = doctor.getPassword();
                                 if (firePass.equals(passTxt)) {
                                     progressDialog.cancel();

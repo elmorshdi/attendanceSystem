@@ -1,19 +1,27 @@
 package com.attendance.system;
 
 public class Message {
-    private String id, courseCode, name, reasonOfAbsence;
+    private String id, key, courseCode, name, reasonOfAbsence;
 
     public Message() {
     }
 
 
-    public Message(String id, String name, String courseCode, String reasonOfAbsence) {
+    public Message(String id, String key, String name, String courseCode, String reasonOfAbsence) {
         this.id = id;
+        this.key = key;
         this.name = name;
         this.courseCode = courseCode;
         this.reasonOfAbsence = reasonOfAbsence;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getName() {
         return name;

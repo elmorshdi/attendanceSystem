@@ -68,10 +68,10 @@ public class SendApologizeActivity extends AppCompatActivity {
 
                                 assert drId != null;
                                 Log.e("tess", drId);
-                                Message message = new Message(student.getId(), student.getName(), codeTxt, messageTxt);
-                                String key = mDatabase.child("massage").child(drId).push().getKey();
+                                String key = mDatabase.child("message").child(drId).push().getKey();
+                                Message message = new Message(student.getId(), key, student.getName(), codeTxt, messageTxt);
                                 assert key != null;
-                                mDatabase.child("massage").child(drId).child(key).setValue(message);
+                                mDatabase.child("message").child(drId).child(key).setValue(message);
 
                             }
 

@@ -14,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.reflect.TypeToken;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class GetStuAttendActivity extends AppCompatActivity {
@@ -44,8 +47,8 @@ public class GetStuAttendActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Students = new ArrayList<>();
         //
-        SharedPreferences prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        idTxt = prf.getString("susername", null);
+        Student student = getStudent("student");
+        idTxt = student.getId();
 
         //to disable button in empty input
         editText.addTextChangedListener(new TextWatcher() {
@@ -70,6 +73,14 @@ public class GetStuAttendActivity extends AppCompatActivity {
 
     }
 
+    public Student getStudent(String key) {
+        SharedPreferences prefs = getSharedPreferences("user_details", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<Student>() {
+        }.getType();
+        return gson.fromJson(json, type);
+    }
     public void show(View view) {
         sub_code = editText.getText().toString();
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

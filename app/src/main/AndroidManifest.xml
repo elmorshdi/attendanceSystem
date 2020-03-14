@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".GetStuAttendActivity"></activity>
+        <activity android:name=".SendApologizeActivity"></activity>
+        <activity android:name=".GetStuAttendActivity" />
         <activity android:name=".GetDocAttendActivity" />
         <activity
             android:name=".ListedToUpdateActivity"

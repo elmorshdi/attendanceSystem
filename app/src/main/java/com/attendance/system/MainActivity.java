@@ -41,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
             doctorLogIn();
         }
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         user = findViewById(R.id.loginemail);
         password = findViewById(R.id.loginpassword);
         radioLecture = findViewById(R.id.Radiolecturer);
         radioStudent = findViewById(R.id.RadioStudent);
+
         progressDialog = new ProgressDialog(MainActivity.this);
 
 

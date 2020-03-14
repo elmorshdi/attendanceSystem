@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddSubjectActivity">
+    tools:context=".SendApologizeActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Add Cours"
+            android:text="Send Apologize"
             android:textColor="#ffffff"
             android:textSize="36sp" />
 
@@ -31,79 +31,52 @@
             android:tint="#ffffff" />
     </RelativeLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_name_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="Cours name"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:inputType="text"
-            android:id="@+id/ed_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_code_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="Code"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
             android:id="@+id/ed_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textSize="20sp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:hint="Course Code"
+            android:inputType="textShortMessage"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/drname_text_input_layout"
+        android:id="@+id/ed_message_text_input_layout"
         android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
 
         <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="Doctor Id"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:id="@+id/ed_drname"
+            android:id="@+id/ed_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:hint="Reason of Absence"
+            android:inputType="textMultiLine"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_gravity="center_horizontal"
-        android:layout_margin="20dp"
-        android:textColor="@android:color/white"
-
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bu2"
-        android:onClick="addCourse"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text=" Add "
+        android:onClick="send"
+        android:text="  Send   "
+        android:textColor="@android:color/white"
         android:textSize="30sp" />
-
-
 </LinearLayout>

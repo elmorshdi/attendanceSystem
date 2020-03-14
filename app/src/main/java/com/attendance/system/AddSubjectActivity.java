@@ -12,8 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddSubjectActivity extends AppCompatActivity {
-    EditText edName, edCode, edDrName;
-    String name, code, drName;
+    EditText edName, edCode, edDrId;
+    String name, code, drId;
     private DatabaseReference mDatabase;
 
     @Override
@@ -23,7 +23,7 @@ public class AddSubjectActivity extends AppCompatActivity {
 
 
         edName = findViewById(R.id.ed_name);
-        edDrName = findViewById(R.id.ed_drname);
+        edDrId = findViewById(R.id.ed_drname);
         edCode = findViewById(R.id.ed_code);
 
 
@@ -42,20 +42,20 @@ public class AddSubjectActivity extends AppCompatActivity {
 
         name = edName.getText().toString();
         code = edCode.getText().toString();
-        drName = edDrName.getText().toString();
+        drId = edDrId.getText().toString();
         if (name.isEmpty() || name.equals(" ")) {
             edName.setError("enter name");
         } else if (code.isEmpty() || code.equals(" ")) {
             edCode.setError("enter code");
-        } else if (drName.isEmpty() || drName.equals(" ")) {
-            edDrName.setError("enter name");
+        } else if (drId.isEmpty() || drId.equals(" ")) {
+            edDrId.setError("enter name");
         } else {
-            Subject subject = new Subject(code, name, drName, 0);
+            Subject subject = new Subject(code, name, drId, 0);
             mDatabase.child("subject").child(subject.getCode()).setValue(subject);
             Toast.makeText(this, "The course was added", Toast.LENGTH_SHORT).show();
             edCode.setText("");
             edName.setText("");
-            edDrName.setText("");
+            edDrId.setText("");
 
         }
     }

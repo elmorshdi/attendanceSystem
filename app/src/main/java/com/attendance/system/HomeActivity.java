@@ -50,16 +50,22 @@ public class HomeActivity extends AppCompatActivity {
     public void record(View view) {
         Intent intent = new Intent(HomeActivity.this, RecordAttendActivity.class);
         startActivity(intent);
+        finish();
+
     }
 
     public void goAddSub(View view) {
         Intent intent = new Intent(HomeActivity.this, AddSubjectActivity.class);
         startActivity(intent);
+        finish();
+
     }
 
     public void myAccount(View view) {
         Intent intent = new Intent(this, DoctorAccountActivity.class);
         startActivity(intent);
+        finish();
+
     }
 
     public void getAttend(View view) {

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Add Cours"
+            android:text="@string/add_course"
             android:textColor="#ffffff"
             android:textSize="36sp" />
 
@@ -28,7 +28,9 @@
             android:layout_margin="8dp"
             android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
-            android:tint="#ffffff" />
+            android:contentDescription="@string/discription"
+            android:tint="#ffffff"
+            tools:ignore="PrivateResource" />
     </RelativeLayout>
 
 
@@ -41,13 +43,14 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint="Cours name"
+            android:autofillHints="@string/course_name"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:inputType="text"
             android:id="@+id/ed_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/course_name"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,14 +65,15 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint="Code"
+            android:autofillHints="@string/code"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:id="@+id/ed_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:textSize="20sp"/>
+            android:hint="@string/code"
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -81,20 +85,21 @@
         <EditText
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint="Doctor Id"
+            android:autofillHints="@string/doctor_id"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:id="@+id/ed_drname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:hint="@string/doctor_id"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="20dp"
         android:textColor="@android:color/white"
 
@@ -102,8 +107,8 @@ android:layout_gravity="center_horizontal"
         android:onClick="addCourse"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text=" Add "
-        android:textSize="30sp" />
+        android:text="@string/add"
+        android:textSize="22sp" />
 
 
 </LinearLayout>

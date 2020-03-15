@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="RECORD ATTENDANCE"
+            android:text="@string/record_attendance"
             android:textColor="#ffffff"
             android:textSize="25sp" />
 
@@ -28,7 +28,8 @@
             android:layout_margin="8dp"
             android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
-            android:tint="#ffffff" />
+            android:tint="#ffffff"
+            tools:ignore="ContentDescription,PrivateResource" />
     </RelativeLayout>
 
 
@@ -45,7 +46,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:focusable="false"
-            android:hint=" pick date"
+            android:hint="@string/pick_date"
             android:importantForAutofill="no"
             android:inputType="date"
             android:paddingStart="5dp"
@@ -66,10 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint=" Course code  "
+            android:hint="@string/course_code"
             android:inputType="textEmailAddress"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
+            android:importantForAutofill="no"
             android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,11 +94,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:hint="enter ID or scan it "
+                android:hint="@string/enter_id_or_scan_it"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:ignore="Autofill" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -106,7 +109,7 @@
             android:layout_weight="0"
             android:background="@drawable/bu2"
             android:onClick="addId"
-            android:text="add"
+            android:text="@string/add"
             android:textColor="@android:color/white"
             android:textSize="22sp" />
     </LinearLayout>
@@ -123,20 +126,26 @@
             android:layout_margin="10dp"
             android:background="@drawable/bu2"
             android:onClick="gotoQr"
-            android:text="  Scan id  "
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/scan_id"
             android:textColor="@android:color/white"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/uploud_bu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:background="@drawable/bu2"
             android:onClick="upLoud"
-            android:text="   scanned id   "
+            android:text="@string/scanned_id"
             android:textColor="@android:color/white"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            tools:ignore="ButtonStyle" />
 
 
     </LinearLayout>

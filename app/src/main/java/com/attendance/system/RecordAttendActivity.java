@@ -60,8 +60,9 @@ public class RecordAttendActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
+        finish();
+
     }
 
     @Override
@@ -120,6 +121,7 @@ public class RecordAttendActivity extends AppCompatActivity {
     public void upLoud(View view) {
         Intent intent = new Intent(RecordAttendActivity.this, ListedToUpdateActivity.class);
         startActivity(intent);
+        finish();
 
     }
 

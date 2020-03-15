@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textColor="#ffffff"
             android:textSize="36sp" />
 
@@ -29,7 +29,9 @@
             android:layout_margin="8dp"
             android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
-            android:tint="#ffffff" />
+            android:contentDescription="@string/discription"
+            android:tint="#ffffff"
+            tools:ignore="PrivateResource" />
     </RelativeLayout>
 
 
@@ -46,13 +48,13 @@
         android:id="@+id/tab1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="doctor"/>
+        android:text="@string/doctor" />
 
     <com.google.android.material.tabs.TabItem
         android:id="@+id/tab2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="student"/>
+        android:text="@string/student" />
 
 </com.google.android.material.tabs.TabLayout>
 

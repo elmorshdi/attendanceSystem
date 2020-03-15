@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,9 +36,7 @@ public class StudentAccountActivity extends AppCompatActivity {
         password = findViewById(R.id.ed_password);
         email = findViewById(R.id.ed_email);
 
-//        nametxt = dataSnapshot.child("student").child(idtxt).child("name").getValue(String.class);
-//        emailtxt = dataSnapshot.child("student").child(idtxt).child("email").getValue(String.class);
-//        passwordtxt = dataSnapshot.child("student").child(idtxt).child("password").getValue(String.class);
+
         String[] names = student.getName().split(" ");
         String fname = names[0];
         textView.setText("Welcome!" + " " + fname);
@@ -88,6 +87,7 @@ public class StudentAccountActivity extends AppCompatActivity {
             mDatabase.child("student").child(student.getId()).child("name").setValue(nameTxt);
             mDatabase.child("student").child(student.getId()).child("email").setValue(emailTxt);
             mDatabase.child("student").child(student.getId()).child("password").setValue(passwordTxt);
+            Toast.makeText(this, "Updated", Toast.LENGTH_LONG).show();
 
         }
     }

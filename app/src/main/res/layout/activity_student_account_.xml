@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="MY ACCOUNT"
+            android:text="@string/my_account"
             android:textColor="#ffffff"
             android:textSize="30sp" />
 
@@ -29,7 +29,9 @@
             android:layout_margin="8dp"
             android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
-            android:tint="#ffffff" />
+            android:contentDescription="@string/discription"
+            android:tint="#ffffff"
+            tools:ignore="PrivateResource" />
     </RelativeLayout>
 
     <TextView
@@ -37,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:text="Welcome!"
+        android:text="@string/welcome"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="26sp" />
@@ -46,7 +48,7 @@
         android:id="@+id/txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Here You Can Edit Your Data "
+        android:text="@string/here_you_can_edit_your_data"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
@@ -62,10 +64,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="text"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
+            android:importantForAutofill="no"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,10 +85,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
+            android:importantForAutofill="no"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,11 +106,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:hint="password"
-            android:inputType="text"
+            android:hint="@string/password"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="Autofill,TextFields" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -116,8 +120,8 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/bu2"
         android:onClick="update"
-        android:text="  Update   "
+        android:text="@string/update"
         android:textColor="@android:color/white"
-        android:textSize="30sp" />
+        android:textSize="22sp" />
 
 </LinearLayout>

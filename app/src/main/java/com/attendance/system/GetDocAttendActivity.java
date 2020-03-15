@@ -70,32 +70,44 @@ public class GetDocAttendActivity extends AppCompatActivity {
 
     public void show(View view) {
         subCode = editText.getText().toString();
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e(TAG, "onDataChange: " + snapshot);
-                total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
+        try {
+            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.e(TAG, "onDataChange: " + snapshot);
+                    if (snapshot.child("subject").hasChild(subCode)) {
+                        total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
 
-                for (DataSnapshot data : snapshot.child("student").getChildren()) {
-                    Log.e(TAG, "onDataChange: " + data);
+                        for (DataSnapshot data : snapshot.child("student").getChildren()) {
+                            Log.e(TAG, "onDataChange: " + data);
 
-                    Student student = data.getValue(Student.class);
-                    Students.add(student);
+                            Student student = data.getValue(Student.class);
+                            Students.add(student);
+
+                        }
+                        RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, subCode, total);
+
+                        recyclerView.setAdapter(RecyclerAdapter);
+                        Students = new ArrayList<>();
+
+                    } else {
+                        Toast.makeText(GetDocAttendActivity.this, "Course Code not correct", Toast.LENGTH_LONG).show();
+                    }
+
 
                 }
-                RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, subCode, total);
 
-                recyclerView.setAdapter(RecyclerAdapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(GetDocAttendActivity.this, "fail", Toast.LENGTH_LONG).show();
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(GetDocAttendActivity.this, "fail", Toast.LENGTH_LONG).show();
 
 
-            }
-        });
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

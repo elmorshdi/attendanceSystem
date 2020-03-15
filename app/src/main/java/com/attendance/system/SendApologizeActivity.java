@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,6 +39,7 @@ public class SendApologizeActivity extends AppCompatActivity {
         student = getStudent("student");
         getData = FirebaseDatabase.getInstance().getReference();
 
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -54,24 +54,23 @@ public class SendApologizeActivity extends AppCompatActivity {
         messageTxt = edMessage.getText().toString();
 
         if (!codeTxt.isEmpty() && !messageTxt.isEmpty()) {
-            progressDialog = ProgressDialog.show(this, "Sending ", "Please wait...", false, false);
 
             Thread thread = new Thread() {
                 @Override
                 public void run() {
                     try {
-                        sleep(3000);
                         getData.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 drId = dataSnapshot.child("subject").child(codeTxt).child("drId").getValue(String.class);
-
-                                assert drId != null;
-                                Log.e("tess", drId);
-                                String key = mDatabase.child("message").child(drId).push().getKey();
-                                Message message = new Message(student.getId(), key, student.getName(), codeTxt, messageTxt);
-                                assert key != null;
-                                mDatabase.child("message").child(drId).child(key).setValue(message);
+                                if (drId == null) {
+                                    Toast.makeText(SendApologizeActivity.this, "Course Code not correct", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    String key = mDatabase.child("message").child(drId).push().getKey();
+                                    Message message = new Message(student.getId(), key, student.getName(), codeTxt, messageTxt);
+                                    assert key != null;
+                                    mDatabase.child("message").child(drId).child(key).setValue(message);
+                                }
 
                             }
 
@@ -81,7 +80,8 @@ public class SendApologizeActivity extends AppCompatActivity {
                             }
                         });
 
-                    } catch (InterruptedException e) {
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -90,9 +90,10 @@ public class SendApologizeActivity extends AppCompatActivity {
             };
             thread.run();
             Toast.makeText(this, "sent", Toast.LENGTH_SHORT).show();
-            progressDialog.cancel();
             edCode.setText("");
             edMessage.setText("");
+        } else {
+            Toast.makeText(this, "Course and reason cannot be empty ", Toast.LENGTH_SHORT).show();
         }
 
     }

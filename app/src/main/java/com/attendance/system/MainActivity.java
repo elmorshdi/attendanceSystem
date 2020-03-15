@@ -70,15 +70,17 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     try {
 
-                        // new task().execute("student");
                         sleep(2000);
                         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Student student = dataSnapshot.child("student").child(id).getValue(Student.class);
                                 assert student != null;
-                                firePass = student.getPassword();
-                                if (firePass.equals(passTxt)) {
+                                //firePass = student.getPassword();
+                                if (student == null) {
+                                    progressDialog.cancel();
+                                    Toast.makeText(MainActivity.this, "Id not correct", Toast.LENGTH_SHORT).show();
+                                } else if (student.getPassword().equals(passTxt)) {
                                     progressDialog.cancel();
                                     studentLogIn();
                                     SharedPreferences.Editor editor = pref.edit();
@@ -127,9 +129,11 @@ public class MainActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Doctor doctor = dataSnapshot.child("doctor").child(id).getValue(Doctor.class);
                                 assert doctor != null;
-                                //ToDo fix id not found
-                                firePass = doctor.getPassword();
-                                if (firePass.equals(passTxt)) {
+                                // firePass = doctor.getPassword();
+                                if (doctor == null) {
+                                    progressDialog.cancel();
+                                    Toast.makeText(MainActivity.this, "Id not correct", Toast.LENGTH_SHORT).show();
+                                } else if (doctor.getPassword().equals(passTxt)) {
                                     progressDialog.cancel();
                                     doctorLogIn();
                                     SharedPreferences.Editor editor = pref.edit();

@@ -22,10 +22,11 @@
             android:id="@+id/dr_fname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Frist Name"
+            android:hint="@string/frist_name"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:inputType="textEmailAddress"
+            android:importantForAutofill="no"
             android:textSize="25sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,10 +45,11 @@
             android:id="@+id/dr_lname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name"
+            android:hint="@string/last_name"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:inputType="textEmailAddress"
+            android:importantForAutofill="no"
             android:textSize="25sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,10 +68,11 @@
             android:id="@+id/dr_id"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Universtie Id"
+            android:hint="@string/universtie_id"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:inputType="number"
+            android:importantForAutofill="no"
             android:textSize="25sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,10 +92,11 @@
             android:id="@+id/dr_email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:inputType="textEmailAddress"
+            android:importantForAutofill="no"
             android:textSize="25sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,7 +112,7 @@
             android:id="@+id/dr_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="password"
+            android:hint="@string/password"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:importantForAutofill="no"
@@ -127,7 +131,7 @@
             android:id="@+id/dr_confirm_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="confirm password"
+            android:hint="@string/confirm_password"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:importantForAutofill="no"
@@ -143,7 +147,7 @@
         android:textColor="@android:color/white"
         android:background="@drawable/bu2"
         android:gravity="center"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textSize="25sp" />
 
 </LinearLayout>

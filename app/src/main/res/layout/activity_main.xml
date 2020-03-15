@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
 
         <ImageView
@@ -20,13 +21,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/aa" />
+            android:src="@drawable/aa"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="intro"
+            android:text="@string/intro"
             android:textSize="70sp" />
 
 
@@ -44,11 +46,13 @@
                 android:layout_centerVertical="true"
                 android:drawableStart="@drawable/person"
                 android:drawablePadding="5dp"
-                android:hint="Enter user email"
+                android:hint="@string/enter_user_id"
                 android:inputType="number"
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
-                android:textSize="20sp" />
+                android:importantForAutofill="no"
+                android:textSize="20sp"
+                tools:ignore="TextFields" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/lock"
                 android:drawablePadding="10dp"
-                android:hint="password"
+                android:hint="@string/password"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:textSize="20sp" />
@@ -83,7 +87,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:padding="10dp"
-                android:text="Student"
+                android:text="@string/student"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -93,7 +97,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:padding="10dp"
-                android:text="lecturer"
+                android:text="@string/lecturer"
                 android:textSize="20sp" />
 
 
@@ -107,7 +111,7 @@
             android:background="@drawable/bu2"
             android:textColor="@android:color/white"
             android:onClick="logIn"
-            android:text="login"
+            android:text="@string/login"
             android:textSize="25sp" />
 
         <Button
@@ -117,7 +121,7 @@
             android:background="@drawable/bu1"
             android:gravity="center"
             android:onClick="goSignUp"
-            android:text="sign up"
+            android:text="@string/sign_up"
             android:textSize="20sp" />
     </LinearLayout>
 

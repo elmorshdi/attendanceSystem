@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="4"
-            android:hint="subject_code"
+            android:hint="@string/subject_code"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:textSize="14sp" />
@@ -33,7 +33,7 @@
             android:background="@drawable/bu2"
             android:enabled="false"
             android:onClick="show"
-            android:text="show"
+            android:text="@string/show"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

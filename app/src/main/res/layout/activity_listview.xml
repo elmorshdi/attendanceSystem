@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="scaned id"
+            android:text="@string/scanned_id"
             android:textColor="#ffffff"
             android:textSize="25sp" />
 
@@ -31,7 +31,9 @@
             android:layout_margin="8dp"
             android:onClick="go_attend"
             android:src="@drawable/abc_vector_test"
-            android:tint="#ffffff" />
+            android:contentDescription="@string/discription"
+            android:tint="#ffffff"
+            tools:ignore="PrivateResource" />
     </RelativeLayout>
 
     <TextView
@@ -73,8 +75,9 @@
             android:layout_margin="10dp"
             android:background="@drawable/bu2"
             android:onClick="uploud"
-            android:text="  aploud  "
-            android:textColor="@android:color/white" />
+            android:text="@string/uploud"
+            android:textColor="@android:color/white"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:layout_width="wrap_content"
@@ -83,8 +86,9 @@
             android:layout_margin="10dp"
             android:background="@drawable/bu2"
             android:onClick="send"
-            android:text="  Send  "
-            android:textColor="@android:color/white" />
+            android:text="@string/send"
+            android:textColor="@android:color/white"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 </LinearLayout>

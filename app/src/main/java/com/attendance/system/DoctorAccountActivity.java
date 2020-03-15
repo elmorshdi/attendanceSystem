@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,21 +30,22 @@ public class DoctorAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_account_);
-        DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
         Doctor doctor = getDoctor("doctor");
         idTxt = doctor.getId();
+
         edName = findViewById(R.id.ed_drname);
         edPassword = findViewById(R.id.ed_drpassword);
         edEmail = findViewById(R.id.ed_dremail);
         textView = findViewById(R.id.welcome);
-//        nameTxt = dataSnapshot.child("doctor").child(idTxt).child("name").getValue(String.class);
-//        emailTxt = dataSnapshot.child("doctor").child(idTxt).child("email").getValue(String.class);
-//        passwordTxt = dataSnapshot.child("doctor").child(idTxt).child("password").getValue(String.class);
+
+
         String[] names = doctor.getName().split(" ");
-        String fname = names[0];
-        textView.setText("Welcome!" + " " + fname);
+        String fName = names[0];
+        textView.setText("Welcome!" + " " + fName);
         edName.setText(doctor.getName());
         edEmail.setText(doctor.getEmail());
         edPassword.setText(doctor.getPassword());
@@ -82,9 +84,8 @@ public class DoctorAccountActivity extends AppCompatActivity {
 
         } else {
             Doctor doctor = new Doctor(nameTxt, idTxt, emailTxt, passwordTxt);
-            mDatabase.child("doctor").child(doctor.getId()).child("name").setValue(nameTxt);
-            mDatabase.child("doctor").child(doctor.getId()).child("email").setValue(emailTxt);
-            mDatabase.child("doctor").child(doctor.getId()).child("password").setValue(passwordTxt);
+            mDatabase.child("doctor").child(doctor.getId()).setValue(doctor);
+            Toast.makeText(this, "Updated", Toast.LENGTH_LONG).show();
 
         }
     }

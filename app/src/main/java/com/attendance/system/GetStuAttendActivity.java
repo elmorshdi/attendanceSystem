@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,7 +31,7 @@ public class GetStuAttendActivity extends AppCompatActivity {
     DatabaseReference mDatabase;
     ArrayList<Student> Students;
     long total;
-    String sub_code, idTxt;
+    String subCode, idTxt;
     EditText editText;
     Button button;
     RecyclerView recyclerView;
@@ -82,21 +83,25 @@ public class GetStuAttendActivity extends AppCompatActivity {
         return gson.fromJson(json, type);
     }
     public void show(View view) {
-        sub_code = editText.getText().toString();
+        subCode = editText.getText().toString();
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.e(TAG, "onDataChange: " + snapshot);
-                total = snapshot.child("subject").child(sub_code).child("numOfLecture").getValue(long.class);
+                if (snapshot.child("subject").hasChild(subCode)) {
 
-                Student student = snapshot.child("student").child(idTxt).getValue(Student.class);
-                Students.add(student);
+                    total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
 
-                RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, sub_code, total);
-                recyclerView.setAdapter(RecyclerAdapter);
+                    Student student = snapshot.child("student").child(idTxt).getValue(Student.class);
+                    Students.add(student);
 
-                Students = new ArrayList<>();
+                    RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, subCode, total);
+                    recyclerView.setAdapter(RecyclerAdapter);
 
+                    Students = new ArrayList<>();
+                } else {
+                    Toast.makeText(GetStuAttendActivity.this, "Course Code not correct", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

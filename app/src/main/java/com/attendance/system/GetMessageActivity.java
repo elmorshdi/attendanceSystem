@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.common.reflect.TypeToken;
@@ -32,11 +33,11 @@ public class GetMessageActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         Doctor doctor = getDoctor("doctor");
         id = doctor.getId();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child("8001123456");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(id);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 messages = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Message message = postSnapshot.getValue(Message.class);
@@ -47,11 +48,12 @@ public class GetMessageActivity extends AppCompatActivity {
 
                 //attach
                 listView.setAdapter(adapter);
+                messages = new ArrayList<>();
 
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
     }

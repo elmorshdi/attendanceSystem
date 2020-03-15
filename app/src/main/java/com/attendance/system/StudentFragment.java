@@ -9,12 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -75,7 +80,26 @@ public class StudentFragment extends Fragment {
                     edConfirmPassword.setError("password not match");
                 } else {
 
-                    Student student = new Student(emailTxt, idTxt, fnameTxt, passwordTxt);
+                    final Student student = new Student(emailTxt, idTxt, fnameTxt, passwordTxt);
+                    mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.child("student").hasChild(student.getId())) {
+                                Toast.makeText(getActivity(), " this id had registered", Toast.LENGTH_SHORT).show();
+                            } else {
+                                mDatabase.child("student").child(student.getId()).setValue(student);
+                                mDatabase.child("student").child(student.getId()).child("subjects").child("sub_code").child("date").setValue("true");
+
+                                studentLogIn(student.getId());
+                            }
+                        }
+
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                     mDatabase.child("student").child(student.getId()).setValue(student);
                     mDatabase.child("student").child(student.getId()).child("subjects").child("sub_code").child("date").setValue("true");
 

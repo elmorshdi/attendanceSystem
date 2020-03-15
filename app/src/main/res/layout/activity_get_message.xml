@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Get Apologies"
+            android:text="@string/get_apologies"
             android:textColor="#ffffff"
             android:textSize="36sp" />
 
@@ -28,7 +28,9 @@
             android:layout_margin="8dp"
             android:onClick="goHome"
             android:src="@drawable/abc_vector_test"
-            android:tint="#ffffff" />
+            android:contentDescription="@string/discription"
+            android:tint="#ffffff"
+            tools:ignore="PrivateResource" />
     </RelativeLayout>
 
     <ListView

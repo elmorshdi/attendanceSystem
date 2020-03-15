@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,9 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:text="id"
+        android:text="@string/id"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="#E86390"
         android:textSize="30sp" />
 
     <TextView
@@ -23,10 +24,11 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="10dp"
-        android:text="code"
+        android:text="@string/code"
         android:textAlignment="viewStart"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="25sp" />
+        android:textColor="#E86390"
+        android:textSize="25sp"
+        tools:ignore="RelativeOverlap" />
 
     <TextView
         android:id="@+id/name"
@@ -36,7 +38,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:text="name"
+        android:text="@string/name"
         android:textAlignment="viewStart"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp" />
@@ -50,9 +52,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:text="message"
+        android:text="@string/message"
         android:textAlignment="viewStart"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/darker_gray"
         android:textSize="25sp" />
 
     <Button
@@ -62,7 +64,7 @@
         android:layout_below="@id/message"
         android:layout_marginStart="20dp"
         android:background="@drawable/bu2"
-        android:text="Accept"
+        android:text="@string/accept"
         android:textColor="@android:color/white" />
 
     <Button
@@ -72,8 +74,9 @@
         android:layout_below="@+id/message"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
+        android:text="@string/remove"
         android:background="@drawable/bu1"
-        android:text="Remove" />
+        android:textColor="@color/colorPrimary" />
 
     <View
         android:layout_width="match_parent"

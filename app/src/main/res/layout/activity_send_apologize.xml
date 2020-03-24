@@ -33,25 +33,13 @@
             tools:ignore="PrivateResource" />
     </RelativeLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ed_code_text_input_layout"
+    <Spinner
+        android:id="@+id/spiner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
-
-        <EditText
-            android:id="@+id/ed_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="@string/course_code"
-            android:inputType="textShortMessage"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:importantForAutofill="no"
-            android:textSize="20sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:spinnerMode="dialog"
+        android:splitMotionEvents="false" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ed_message_text_input_layout"

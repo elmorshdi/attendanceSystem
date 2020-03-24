@@ -27,7 +27,6 @@ import java.util.Map;
 
 public class GetStuAttendActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    DatabaseReference mDatabase, mData;
     ArrayList<Student> Students;
     long total = 0;
     String subCode, idTxt;
@@ -35,14 +34,14 @@ public class GetStuAttendActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Spinner spinner;
     Map<Integer, String> map;
+    DatabaseReference mDatabase, mData;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_stu_attend);
         //
-        map = new HashMap<>();
-        spinner = findViewById(R.id.spiner);
+
         button = findViewById(R.id.bu2);
         recyclerView = findViewById(R.id.recyclerview2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -50,6 +49,9 @@ public class GetStuAttendActivity extends AppCompatActivity {
         //
         idTxt = getIntent().getStringExtra("id");
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        map = new HashMap<>();
+        spinner = findViewById(R.id.spiner);
         mData = FirebaseDatabase.getInstance().getReference();
 
         mData.addListenerForSingleValueEvent(new ValueEventListener() {

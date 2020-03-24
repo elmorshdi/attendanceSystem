@@ -50,7 +50,6 @@ public class HomeActivity extends AppCompatActivity {
     public void record(View view) {
         Intent intent = new Intent(HomeActivity.this, RecordAttendActivity.class);
         startActivity(intent);
-        finish();
 
     }
 

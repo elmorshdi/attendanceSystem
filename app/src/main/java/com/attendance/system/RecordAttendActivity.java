@@ -117,7 +117,6 @@ public class RecordAttendActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
 
     }
 

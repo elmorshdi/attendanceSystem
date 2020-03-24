@@ -38,12 +38,10 @@ public class StudentHomeActivity extends AppCompatActivity {
     public void stAccount(View view) {
         Intent intent = new Intent(this, StudentAccountActivity.class);
         startActivity(intent);
-        finish();
 
     }
 
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
     }
 
@@ -64,8 +62,8 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     public void message(View view) {
         Intent intent = new Intent(this, SendApologizeActivity.class);
+        intent.putExtra("id", id);
         startActivity(intent);
-        finish();
 
     }
 }

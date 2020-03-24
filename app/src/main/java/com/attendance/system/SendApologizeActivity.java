@@ -1,11 +1,14 @@
 package com.attendance.system;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,27 +23,79 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SendApologizeActivity extends AppCompatActivity {
-    EditText edCode, edMessage;
-    String codeTxt, messageTxt, drId;
+    EditText edMessage;
+    String codeTxt, messageTxt, idTxt, drId;
     Student student;
-    ProgressDialog progressDialog;
-
-    private DatabaseReference mDatabase, getData;
+    Spinner spinner;
+    Map<Integer, String> map;
+    DatabaseReference mDatabase, mData;
+    private DatabaseReference getData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_apologize);
 
-        edCode = findViewById(R.id.ed_code);
         edMessage = findViewById(R.id.ed_message);
         student = getStudent("student");
         getData = FirebaseDatabase.getInstance().getReference();
 
+        idTxt = getIntent().getStringExtra("id");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
+        map = new HashMap<>();
+        spinner = findViewById(R.id.spiner);
+        mData = FirebaseDatabase.getInstance().getReference();
+
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> strings = new ArrayList<>();
+                int i = 0;
+
+                for (DataSnapshot postSnapshot : dataSnapshot.child("student").child(idTxt).child("subjects").getChildren()) {
+                    String key = postSnapshot.getKey();
+                    assert key != null;
+                    if (dataSnapshot.child("subject").hasChild(key)) {
+                        String s = dataSnapshot.child("subject").child(key).child("name").getValue(String.class);
+                        strings.add("  " + s);
+                        map.put(i, key);
+                        i++;
+                    }
+
+                }
+                SpinnerAdapter adapter = new ArrayAdapter<>(SendApologizeActivity.this, R.layout.itemm, strings);
+                spinner.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                codeTxt = map.get(i);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     public void goHome(View view) {
@@ -50,7 +105,6 @@ public class SendApologizeActivity extends AppCompatActivity {
     }
 
     public void send(View view) {
-        codeTxt = edCode.getText().toString();
         messageTxt = edMessage.getText().toString();
 
         if (!codeTxt.isEmpty() && !messageTxt.isEmpty()) {
@@ -90,7 +144,6 @@ public class SendApologizeActivity extends AppCompatActivity {
             };
             thread.run();
             Toast.makeText(this, "sent", Toast.LENGTH_SHORT).show();
-            edCode.setText("");
             edMessage.setText("");
         } else {
             Toast.makeText(this, "Course and reason cannot be empty ", Toast.LENGTH_SHORT).show();

@@ -145,7 +145,7 @@ public class DoctorFragment extends Fragment {
         Log.e(TAG, doctor + "\n" + random);
         editor.putString("pendingDoctor", studentInJson);
         editor.apply();
-        Intent intent = new Intent(getActivity(), pendingActivity.class);
+        Intent intent = new Intent(getActivity(), PendingActivity.class);
         intent.putExtra("random", random);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).finish();

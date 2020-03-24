@@ -20,6 +20,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
+import java.util.Objects;
 
 
 /**
@@ -64,6 +67,7 @@ public class StudentFragment extends Fragment {
                 emailTxt = edEmail.getText().toString();
                 passwordTxt = edPassword.getText().toString();
                 confirmPasswordTxt = edConfirmPassword.getText().toString();
+                String[] domain = emailTxt.split("@");
 
                 if (fnameTxt.isEmpty() || fnameTxt.equals(" ")) {
                     edFullName.setError("enter your name");
@@ -71,6 +75,10 @@ public class StudentFragment extends Fragment {
                     edId.setError("enter id");
                 } else if (emailTxt.isEmpty() || emailTxt.equals(" ")) {
                     edEmail.setError("enter email");
+                } else if (!emailTxt.contains("@")) {
+                    edEmail.setError("Email not valid");
+                } else if (!(domain[1].equals("students.mans.edu.eg"))) {
+                    edEmail.setError("Email not valid");
                 } else if (passwordTxt.isEmpty() || passwordTxt.equals(" ")) {
                     edPassword.setError("enter password");
                 } else if (passwordTxt.length() < 8) {
@@ -87,10 +95,15 @@ public class StudentFragment extends Fragment {
                             if (dataSnapshot.child("student").hasChild(student.getId())) {
                                 Toast.makeText(getActivity(), " this id had registered", Toast.LENGTH_SHORT).show();
                             } else {
+                                SharedPreferences.Editor editor = pref.edit();
+                                Gson gson = new Gson();
+                                String studentInJson = gson.toJson(student);
+                                editor.putString("student", studentInJson);
+                                editor.apply();
                                 mDatabase.child("student").child(student.getId()).setValue(student);
                                 mDatabase.child("student").child(student.getId()).child("subjects").child("sub_code").child("date").setValue("true");
 
-                                studentLogIn(student.getId());
+                                studentLogIn();
                             }
                         }
 
@@ -100,10 +113,7 @@ public class StudentFragment extends Fragment {
 
                         }
                     });
-                    mDatabase.child("student").child(student.getId()).setValue(student);
-                    mDatabase.child("student").child(student.getId()).child("subjects").child("sub_code").child("date").setValue("true");
 
-                    studentLogIn(student.getId());
                 }
 
 
@@ -114,14 +124,11 @@ public class StudentFragment extends Fragment {
         return view;
     }
 
-    private void studentLogIn(String id) {
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("susername", id);
-        editor.putString("spassword", passwordTxt);
-        editor.apply();
+    private void studentLogIn() {
+
         Intent intent = new Intent(getActivity(), StudentHomeActivity.class);
         startActivity(intent);
-        getActivity().finish();
+        Objects.requireNonNull(getActivity()).finish();
     }
 
 

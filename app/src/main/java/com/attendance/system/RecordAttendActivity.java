@@ -6,42 +6,98 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.common.reflect.TypeToken;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RecordAttendActivity extends AppCompatActivity {
     int year = 2020, month = 7, day = 9;
-    EditText edDate, edId, edCCode;
+    EditText edDate, edId;
     TextView textView;
-    String date, cousecode, id, tag;
+    String date, subCode, id, tag;
     ArrayList<String> arrayList = new ArrayList<String>();
     SharedPreferences pref;
-
+    Spinner spinner;
+    Map<Integer, String> map;
+    ArrayList<Subject> subjects;
+    DatabaseReference mData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recordattend);
+        mData = FirebaseDatabase.getInstance().getReference();
 
-
+        map = new HashMap<>();
+        spinner = findViewById(R.id.spiner);
         textView = findViewById(R.id.numtxt);
         edDate = findViewById(R.id.datepicker);
         edId = findViewById(R.id.stu_id);
-        edCCode = findViewById(R.id.cours_code);
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> strings = new ArrayList<>();
+                subjects = new ArrayList<>();
+
+                int i = 0;
+
+                for (DataSnapshot postSnapshot : dataSnapshot.child("subject").getChildren()) {
+                    Subject subject = postSnapshot.getValue(Subject.class);
+                    subjects.add(subject);
+                    assert subject != null;
+                    String code = subject.getCode();
+                    String s = subject.getName();
+                    strings.add("  " + s);
+                    map.put(i, code);
+                    i++;
+
+
+                }
+                SpinnerAdapter adapter = new ArrayAdapter<>(RecordAttendActivity.this, R.layout.itemm, strings);
+                spinner.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subCode = map.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         pref = getSharedPreferences("id", MODE_PRIVATE);
-        if (pref.contains("cours_code")) {
-            edCCode.setText(getObject("cours_code"));
-        }
+
         if (pref.contains("date")) {
             edDate.setText(getObject("date"));
         }
@@ -67,8 +123,7 @@ public class RecordAttendActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        if (edCCode.getText().length() > 4)
-            saveObject(edCCode.getText().toString(), "cours_code");
+        saveObject(subCode, "cours_code");
         if (edDate.getText().length() > 4) saveObject(edDate.getText().toString(), "date");
         super.onPause();
     }

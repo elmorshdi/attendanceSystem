@@ -1,10 +1,7 @@
 <resources>
-    <string name="app_name">attendanceSystem</string>
+    <string name="app_name">Attendance System</string>
     <string name="todo">TODO</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tt">number of student :</string>
     <string name="course_name">Course name</string>
     <string name="code">Code</string>
     <string name="doctor_id">Doctor Id</string>
@@ -15,7 +12,7 @@
     <string name="add_course">Add Course</string>
     <string name="view_attendance">View attendance</string>
     <string name="get_apologies">Get Apologies</string>
-    <string name="uploud"> upLoud </string>
+    <string name="uploud"> upLoud Attendance </string>
     <string name="intro">intro</string>
     <string name="enter_user_id">Enter user Id</string>
     <string name="student">Student</string>
@@ -29,7 +26,7 @@
     <string name="scan_id"> Scan id </string>
     <string name="scanned_id"> scanned id </string>
     <string name="reason_of_absence">Reason of Absence</string>
-    <string name="send"> Send </string>
+    <string name="send"> Send Notifications</string>
     <string name="doctor">doctor</string>
     <string name="my_account">MY ACCOUNT</string>
     <string name="welcome">Welcome!</string>

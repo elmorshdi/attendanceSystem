@@ -54,26 +54,12 @@
             android:textSize="22sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fname_text_input_layout"
+    <Spinner
+        android:id="@+id/spiner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp">
-
-        <EditText
-            android:id="@+id/cours_code"
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="@string/course_code"
-            android:inputType="textEmailAddress"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:importantForAutofill="no"
-            android:textSize="22sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:spinnerMode="dialog" />
 
     <LinearLayout
         android:layout_width="match_parent"

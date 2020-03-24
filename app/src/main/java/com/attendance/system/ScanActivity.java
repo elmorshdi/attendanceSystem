@@ -28,7 +28,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     private final int CAMERA_PERMISSION_REQUEST_CODE = 2;
 
     ZXingScannerView mScannerView;
-    ArrayList<String> arrayListScanned = new ArrayList<String>();
+    ArrayList<String> arrayListScanned;
     private BeepManager beepManager;
     private String lastText;
 
@@ -36,7 +36,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
-
+        arrayListScanned = new ArrayList<String>();
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
         beepManager = new BeepManager(this);
@@ -109,7 +109,9 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     @Override
     public void handleResult(Result result) {
         arrayListScanned = getArrayList("all_id");
-
+        if (arrayListScanned == null) {
+            arrayListScanned = new ArrayList<String>();
+        }
         if (result.getText() == null || result.getText().equals(lastText)) {
             // Prevent duplicate scans
             if (arrayListScanned.contains(result.getText()))

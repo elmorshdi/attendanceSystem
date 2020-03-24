@@ -10,20 +10,19 @@
     <LinearLayout
         android:id="@+id/linear2"
         android:layout_width="match_parent"
-        android:layout_height="61dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="5">
 
-        <EditText
-            android:id="@+id/code_s2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+        <Spinner
+            android:id="@+id/spiner"
+            android:layout_width="wrap_content"
             android:layout_weight="4"
-            android:hint="@string/subject_code"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:textSize="14sp" />
+            android:layout_height="match_parent"
+
+            android:layout_margin="10dp"
+            android:spinnerMode="dialog"
+            android:splitMotionEvents="false" />
 
         <Button
             android:id="@+id/bu2"
@@ -37,6 +36,7 @@
             android:text="@string/show"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

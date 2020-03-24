@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".pendingActivity"></activity>
+        <activity android:name=".PendingActivity" />
         <activity
             android:name=".GetMessageActivity"
             android:screenOrientation="portrait"
@@ -42,10 +42,7 @@
             android:name=".DoctorAccountActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".StudentHomeActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".StudentHomeActivity" />
         <activity
             android:name=".ScanActivity"
             android:screenOrientation="portrait"
@@ -58,10 +55,7 @@
             android:name=".RecordAttendActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".HomeActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".HomeActivity" />
         <activity
             android:name=".SignUpActivity"
             android:screenOrientation="portrait"

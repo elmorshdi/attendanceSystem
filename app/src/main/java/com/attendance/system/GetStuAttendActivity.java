@@ -1,13 +1,13 @@
 package com.attendance.system;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,58 +15,87 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.common.reflect.TypeToken;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GetStuAttendActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    DatabaseReference mDatabase;
+    DatabaseReference mDatabase, mData;
     ArrayList<Student> Students;
-    long total;
+    long total = 0;
     String subCode, idTxt;
-    EditText editText;
     Button button;
     RecyclerView recyclerView;
+    Spinner spinner;
+    Map<Integer, String> map;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_stu_attend);
         //
+        map = new HashMap<>();
+        spinner = findViewById(R.id.spiner);
         button = findViewById(R.id.bu2);
-        editText = findViewById(R.id.code_s2);
         recyclerView = findViewById(R.id.recyclerview2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         Students = new ArrayList<>();
         //
-        Student student = getStudent("student");
-        idTxt = student.getId();
+        idTxt = getIntent().getStringExtra("id");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mData = FirebaseDatabase.getInstance().getReference();
 
-        //to disable button in empty input
-        editText.addTextChangedListener(new TextWatcher() {
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> strings = new ArrayList<>();
+                int i = 0;
+
+                for (DataSnapshot postSnapshot : dataSnapshot.child("student").child(idTxt).child("subjects").getChildren()) {
+                    String key = postSnapshot.getKey();
+                    assert key != null;
+                    if (dataSnapshot.child("subject").hasChild(key)) {
+                        String s = dataSnapshot.child("subject").child(key).child("name").getValue(String.class);
+                        strings.add("  " + s);
+                        map.put(i, key);
+                        i++;
+                    }
+
+                }
+                SpinnerAdapter adapter = new ArrayAdapter<>(GetStuAttendActivity.this, R.layout.itemm, strings);
+                spinner.setAdapter(adapter);
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String Input = editText.getText().toString().trim();
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                button.setEnabled(!Input.isEmpty() && !Input.equals(" "));
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subCode = map.get(i);
+                Log.e(TAG, "onDataChange: " + map);
+
+                Log.e(TAG, "onDataChange: " + i);
+
+                // adapterView.getItemAtPosition(i).toString();
+                button.setEnabled(true);
+
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -74,20 +103,12 @@ public class GetStuAttendActivity extends AppCompatActivity {
 
     }
 
-    public Student getStudent(String key) {
-        SharedPreferences prefs = getSharedPreferences("user_details", MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString(key, null);
-        Type type = new TypeToken<Student>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
     public void show(View view) {
-        subCode = editText.getText().toString();
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e(TAG, "onDataChange: " + snapshot);
+                // Log.e(TAG, "onDataChange: " + snapshot);
+
                 if (snapshot.child("subject").hasChild(subCode)) {
 
                     total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);

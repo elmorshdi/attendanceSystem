@@ -58,6 +58,7 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     public void getAttend(View view) {
         Intent intent = new Intent(this, GetStuAttendActivity.class);
+        intent.putExtra("id", id);
         startActivity(intent);
     }
 

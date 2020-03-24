@@ -25,6 +25,10 @@ class Student {
     public Student() {
     }
 
+    public Student(Map<String, Map<String, String>> subjects) {
+        this.subjects = subjects;
+    }
+
     public String getType() {
         return type;
     }

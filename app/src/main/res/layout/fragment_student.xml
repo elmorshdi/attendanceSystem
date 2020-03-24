@@ -1,134 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".StudentFragment">
 
 
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fullname_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/fullname"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/full_name"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:textSize="25sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/id"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/universtie_id"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:textSize="25sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_text_input_layout"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/email"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/universtie_email"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:inputType="textEmailAddress"
-            android:importantForAutofill="no"
-            android:textSize="25sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_text_input_layout"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:textSize="25sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confirm_password_text_input_layout"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/confirm_password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/confirm_password"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:textSize="25sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:id="@+id/ssingup"
-        android:textColor="@android:color/white"
-        android:background="@drawable/bu2"
-        android:gravity="center"
-        android:text="@string/sign_up"
-        android:textSize="25sp" />
+        android:orientation="vertical">
 
-</LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fullname_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/fullname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/full_name"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:textSize="25sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/id"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/universtie_id"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:inputType="number"
+                android:importantForAutofill="no"
+                android:textSize="25sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="email@students.mans.edu.eg"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:inputType="textEmailAddress"
+                android:importantForAutofill="no"
+                android:textSize="25sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_text_input_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textSize="25sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirm_password_text_input_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirm_password"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textSize="25sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:id="@+id/ssingup"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bu2"
+            android:gravity="center"
+            android:text="@string/sign_up"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+</ScrollView>

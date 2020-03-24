@@ -1,12 +1,12 @@
 package com.attendance.system;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,46 +21,76 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class GetDocAttendActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    DatabaseReference mDatabase;
+    DatabaseReference mData, mDatabase;
     ArrayList<Student> Students;
     long total;
     String subCode;
-    EditText editText;
     Button button;
     RecyclerView recyclerView;
-
+    Spinner spinner;
+    Map<Integer, String> map;
+    ArrayList<Subject> subjects;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.get_doc_attend);
-
+        map = new HashMap<>();
+        spinner = findViewById(R.id.spiner);
         recyclerView = findViewById(R.id.recyclerview);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mData = FirebaseDatabase.getInstance().getReference();
+
         Students = new ArrayList<>();
         button = findViewById(R.id.bu);
-        editText = findViewById(R.id.code_s);
 
-        editText.addTextChangedListener(new TextWatcher() {
+        mData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> strings = new ArrayList<>();
+                subjects = new ArrayList<>();
+
+                int i = 0;
+
+                for (DataSnapshot postSnapshot : dataSnapshot.child("subject").getChildren()) {
+                    Subject subject = postSnapshot.getValue(Subject.class);
+                    subjects.add(subject);
+                    assert subject != null;
+                    String code = subject.getCode();
+                    String s = subject.getName();
+                    strings.add("  " + s);
+                    map.put(i, code);
+                    i++;
+
+
+                }
+                SpinnerAdapter adapter = new ArrayAdapter<>(GetDocAttendActivity.this, R.layout.itemm, strings);
+                spinner.setAdapter(adapter);
 
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String Input = editText.getText().toString().trim();
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                button.setEnabled(!Input.isEmpty() && !Input.equals(" "));
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                subCode = map.get(i);
+                button.setEnabled(true);
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -69,17 +99,12 @@ public class GetDocAttendActivity extends AppCompatActivity {
     }
 
     public void show(View view) {
-        subCode = editText.getText().toString();
         try {
             mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Log.e(TAG, "onDataChange: " + snapshot);
-                    if (snapshot.child("subject").hasChild(subCode)) {
                         total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
-
                         for (DataSnapshot data : snapshot.child("student").getChildren()) {
-                            Log.e(TAG, "onDataChange: " + data);
 
                             Student student = data.getValue(Student.class);
                             Students.add(student);
@@ -89,10 +114,6 @@ public class GetDocAttendActivity extends AppCompatActivity {
 
                         recyclerView.setAdapter(RecyclerAdapter);
                         Students = new ArrayList<>();
-
-                    } else {
-                        Toast.makeText(GetDocAttendActivity.this, "Course Code not correct", Toast.LENGTH_LONG).show();
-                    }
 
 
                 }

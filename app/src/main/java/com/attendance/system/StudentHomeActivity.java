@@ -35,6 +35,7 @@ public class StudentHomeActivity extends AppCompatActivity {
         return gson.fromJson(json, type);
     }
 
+
     public void stAccount(View view) {
         Intent intent = new Intent(this, StudentAccountActivity.class);
         startActivity(intent);

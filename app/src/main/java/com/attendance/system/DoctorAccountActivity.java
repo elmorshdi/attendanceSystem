@@ -40,6 +40,7 @@ public class DoctorAccountActivity extends AppCompatActivity {
         edName = findViewById(R.id.ed_drname);
         edPassword = findViewById(R.id.ed_drpassword);
         edEmail = findViewById(R.id.ed_dremail);
+
         textView = findViewById(R.id.welcome);
 
 

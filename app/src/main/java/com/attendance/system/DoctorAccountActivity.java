@@ -22,8 +22,6 @@ public class DoctorAccountActivity extends AppCompatActivity {
     String idTxt, nameTxt, passwordTxt, emailTxt, TAG;
     EditText edName, edPassword, edEmail;
     SharedPreferences prf;
-
-
     TextView textView;
     private DatabaseReference mDatabase;
 

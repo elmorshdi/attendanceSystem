@@ -42,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
         }
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+
         user = findViewById(R.id.loginemail);
-        password = findViewById(R.id.loginpassword);
         radioLecture = findViewById(R.id.Radiolecturer);
         radioStudent = findViewById(R.id.RadioStudent);
+        password = findViewById(R.id.loginpassword);
 
         progressDialog = new ProgressDialog(MainActivity.this);
 
@@ -194,5 +195,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    public void forgetPassword(View view) {
+        Intent intent = new Intent(this, ResetPasswordActivity.class);
+        startActivity(intent);
+    }
 }

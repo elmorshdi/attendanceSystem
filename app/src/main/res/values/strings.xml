@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Attendance System</string>
     <string name="todo">TODO</string>
+     
+     
+    <string name="sign_uplin">Sign Up </string>
 
     <string name="course_name">Course name</string>
     <string name="code">Code</string>
@@ -51,4 +54,6 @@
     <string name="remove"> Remove </string>
     <string name="_0_0_0_0_0">0 0 0 0 0</string>
     <string name="resend_code">ReSend Code</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
 </resources>

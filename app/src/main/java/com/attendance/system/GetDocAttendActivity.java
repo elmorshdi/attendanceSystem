@@ -1,6 +1,7 @@
 package com.attendance.system;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,11 +27,10 @@ import java.util.Map;
 
 
 public class GetDocAttendActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
     DatabaseReference mData, mDatabase;
     ArrayList<Student> Students;
     long total;
-    String subCode;
+    String subCode ,tag;
     Button button;
     RecyclerView recyclerView;
     Spinner spinner;
@@ -86,7 +86,13 @@ public class GetDocAttendActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 subCode = map.get(i);
+                Log.e(tag, "onDataChange: " + map);
+
+                Log.e(tag, "onDataChange: " + i);
+
+                // adapterView.getItemAtPosition(i).toString();
                 button.setEnabled(true);
+
             }
 
             @Override
@@ -99,19 +105,16 @@ public class GetDocAttendActivity extends AppCompatActivity {
     }
 
     public void show(View view) {
-        try {
+
             mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
-                        for (DataSnapshot data : snapshot.child("student").getChildren()) {
-
-                            Student student = data.getValue(Student.class);
+                    total = snapshot.child("subject").child(subCode).child("numOfLecture").getValue(long.class);
+                    for (DataSnapshot data : snapshot.child("student").getChildren()) {
+                        Student student = data.getValue(Student.class);
                             Students.add(student);
-
                         }
                         RecyclerAdapter RecyclerAdapter = new RecyclerAdapter(Students, subCode, total);
-
                         recyclerView.setAdapter(RecyclerAdapter);
                         Students = new ArrayList<>();
 
@@ -126,9 +129,7 @@ public class GetDocAttendActivity extends AppCompatActivity {
                 }
             });
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
     }
 

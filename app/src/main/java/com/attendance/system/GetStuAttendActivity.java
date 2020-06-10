@@ -109,7 +109,6 @@ public class GetStuAttendActivity extends AppCompatActivity {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Log.e(TAG, "onDataChange: " + snapshot);
 
                 if (snapshot.child("subject").hasChild(subCode)) {
 

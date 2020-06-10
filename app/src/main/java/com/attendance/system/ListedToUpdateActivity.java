@@ -156,11 +156,11 @@ public class ListedToUpdateActivity extends AppCompatActivity {
                 if (m == 2) {
 
                     String email = student.getEmail();
-                    JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "The number of allowed absences exceeded two lectures");
+                    JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "You have exceeded the number of allowed absences, two lectures, this first warning, if multiple absences are repeated again without sending an acceptable excuse, you will be deprived of taking the exam.");
                     mail.execute();
                 } else if (m == 4) {
                     String email = student.getEmail();
-                    JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "The number of allowed absences exceeded four lectures");
+                    JavaMailAPI mail = new JavaMailAPI(this, email, "Important notification", "You have exceeded the number of allowed absences 4 times this second warning due to multiple absences again without sending an acceptable excuse You have been deprived of taking the exam");
                     mail.execute();
 
                 }

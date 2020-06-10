@@ -47,9 +47,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.AtendV
         } else if (subject.containsKey(subjCode)) {
             sub_code = subject.get(subjCode);
             assert sub_code != null;
-            holder.count.setText(sub_code.size() + " " + "out" + " " + total);
-            holder.name.setText(student.getName());
-            holder.id.setText(student.getId());
+                holder.count.setText(sub_code.size() + " " + "out" + " " + total);
+                holder.name.setText(student.getName());
+                holder.id.setText(student.getId());
         }
     }
 

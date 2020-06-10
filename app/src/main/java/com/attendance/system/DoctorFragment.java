@@ -147,6 +147,8 @@ public class DoctorFragment extends Fragment {
         editor.apply();
         Intent intent = new Intent(getActivity(), PendingActivity.class);
         intent.putExtra("random", random);
+        intent.putExtra("type", "d");
+
         startActivity(intent);
         Objects.requireNonNull(getActivity()).finish();
     }

@@ -27,8 +27,24 @@ public class SignUpActivity extends AppCompatActivity {
         tabDoctor = findViewById(R.id.tab1);
         tabStudent = findViewById(R.id.tab2);
         viewPager = findViewById(R.id.viewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
-        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+                                               @Override
+                                               public void onTabSelected(TabLayout.Tab tab) {
+                                                   viewPager.setCurrentItem(tab.getPosition());
+                                               }
+
+                                               @Override
+                                               public void onTabUnselected(TabLayout.Tab tab) {
+
+                                               }
+
+                                               @Override
+                                               public void onTabReselected(TabLayout.Tab tab) {
+
+                                               }
+                                           });
+            pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,16 +24,19 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.Objects;
+import java.util.Random;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class StudentFragment extends Fragment {
+    private static final String TAG = "ta";
     private EditText edEmail, edPassword, edConfirmPassword, edFullName, edId;
     private String emailTxt, passwordTxt, confirmPasswordTxt, idTxt, fnameTxt;
     private DatabaseReference mDatabase;
     private SharedPreferences pref;
+    private Student student;
 
     public StudentFragment() {
         // Required empty public constructor
@@ -88,22 +92,15 @@ public class StudentFragment extends Fragment {
                     edConfirmPassword.setError("password not match");
                 } else {
 
-                    final Student student = new Student(emailTxt, idTxt, fnameTxt, passwordTxt);
+                    student = new Student(emailTxt, idTxt, fnameTxt, passwordTxt);
                     mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.child("student").hasChild(student.getId())) {
                                 Toast.makeText(getActivity(), " this id had registered", Toast.LENGTH_SHORT).show();
                             } else {
-                                SharedPreferences.Editor editor = pref.edit();
-                                Gson gson = new Gson();
-                                String studentInJson = gson.toJson(student);
-                                editor.putString("student", studentInJson);
-                                editor.apply();
-                                mDatabase.child("student").child(student.getId()).setValue(student);
-                                mDatabase.child("student").child(student.getId()).child("subjects").child("sub_code").child("date").setValue("true");
 
-                                studentLogIn();
+                                studentLogIn(getRandom());
                             }
                         }
 
@@ -123,13 +120,33 @@ public class StudentFragment extends Fragment {
 
         return view;
     }
+    private String getRandom() {
+        String number = "";
+        Random random = new Random();
+        for (int i = 0; i < 5; i++) {
+            number += random.nextInt(9);
+        }
+        return number;
+    }
 
-    private void studentLogIn() {
+    private void studentLogIn(String random) {
+        JavaMailAPI mailAPI = new JavaMailAPI(getContext(), emailTxt, "[AttendanceSystem] Please verify your email Address",
+                "Almost done!" + "\n" + fnameTxt + "\n" + "Your verify code [" + random + "]");
+        mailAPI.execute();
+        SharedPreferences.Editor editor = pref.edit();
+        Gson gson = new Gson();
+        String studentInJson = gson.toJson(student);
+        Log.e(TAG,   "\n" + random);
+        editor.putString("pendingStudent", studentInJson);
+        editor.apply();
+        Intent intent = new Intent(getActivity(), PendingActivity.class);
+        intent.putExtra("random", random);
+        intent.putExtra("type", "s");
 
-        Intent intent = new Intent(getActivity(), StudentHomeActivity.class);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).finish();
     }
+
 
 
 }

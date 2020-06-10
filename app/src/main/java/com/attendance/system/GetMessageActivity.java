@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,16 +25,17 @@ public class GetMessageActivity extends AppCompatActivity {
     String id;
     ArrayList<Message> messages;
     ListView listView;
-    private DatabaseReference mDatabase;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_message);
         listView = findViewById(R.id.list);
+        textView=findViewById(R.id.text);
         Doctor doctor = getDoctor("doctor");
         id = doctor.getId();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(id);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("message").child(id);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -47,9 +49,13 @@ public class GetMessageActivity extends AppCompatActivity {
                 MessageAdapter adapter = new MessageAdapter(GetMessageActivity.this, messages, id);
 
                 //attach
-                listView.setAdapter(adapter);
-                messages = new ArrayList<>();
-
+                if (!messages.isEmpty()) {
+                    listView.setVisibility(View.VISIBLE);
+                    listView.setAdapter(adapter);
+                    messages = new ArrayList<>();
+                }else {
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

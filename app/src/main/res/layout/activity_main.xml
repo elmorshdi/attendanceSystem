@@ -22,15 +22,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
             android:src="@drawable/aa"
             tools:ignore="ContentDescription" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/intro"
-            android:textSize="70sp" />
 
 
         <com.google.android.material.textfield.TextInputLayout

@@ -17,13 +17,13 @@ import java.lang.reflect.Type;
 public class HomeActivity extends AppCompatActivity {
     String id;
     SharedPreferences prf;
-
+    Doctor doctor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        Doctor doctor = getDoctor("doctor");
+        doctor = getDoctor("doctor");
         id = doctor.getId();
         Log.e("doctor", doctor.getName());
 
@@ -78,5 +78,13 @@ public class HomeActivity extends AppCompatActivity {
     public void message(View view) {
         Intent intent = new Intent(HomeActivity.this, GetMessageActivity.class);
         startActivity(intent);
+    }
+
+    public void goFeedback(View view) {
+        Intent intent = new Intent(HomeActivity.this, FeedbackActivity.class);
+        String name = doctor.getName();
+        intent.putExtra("name",name);
+        startActivity(intent);
+
     }
 }

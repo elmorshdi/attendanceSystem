@@ -13,7 +13,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ResetPasswordActivity"/>
+        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".PendingActivity" />
         <activity
             android:name=".GetMessageActivity"

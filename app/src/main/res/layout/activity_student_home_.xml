@@ -222,5 +222,22 @@
 
 
         </GridLayout>
+        <TextView
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:elevation="8dp"
+            android:focusable="true"
+            android:onClick="goFeedback"
+            android:shadowColor="@color/colorPrimary"
+            android:shadowDx="8"
+            android:text="Feedback"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            android:translationZ="@dimen/_10sdp" />
 </LinearLayout>
+
 </ScrollView>

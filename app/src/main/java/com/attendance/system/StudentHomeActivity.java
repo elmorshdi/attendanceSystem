@@ -15,13 +15,13 @@ import java.lang.reflect.Type;
 public class StudentHomeActivity extends AppCompatActivity {
     SharedPreferences prf;
     String id;
-
+    Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home_);
         prf = getSharedPreferences("user_details", MODE_PRIVATE);
-        Student student = getStudent("student");
+       student = getStudent("student");
         id = student.getId();
 
     }
@@ -66,5 +66,12 @@ public class StudentHomeActivity extends AppCompatActivity {
         intent.putExtra("id", id);
         startActivity(intent);
 
+    }
+
+    public void goFeedback(View view) {
+        Intent intent = new Intent(StudentHomeActivity.this, FeedbackActivity.class);
+        String name = student.getName();
+        intent.putExtra("name",name);
+        startActivity(intent);
     }
 }

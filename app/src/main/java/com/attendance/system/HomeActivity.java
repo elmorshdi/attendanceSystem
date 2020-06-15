@@ -1,5 +1,7 @@
 package com.attendance.system;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,12 +41,27 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void signOut(View view) {
-        SharedPreferences.Editor editor = prf.edit();
-        editor.clear();
-        editor.apply();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("sign Out")
+                .setMessage("Are you sure you want to sign out ?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        SharedPreferences.Editor editor = prf.edit();
+                        editor.clear();
+                        editor.apply();
+                        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
     }
 
     public void record(View view) {

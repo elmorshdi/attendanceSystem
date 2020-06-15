@@ -98,7 +98,6 @@
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:inputType="textEmailAddress"
-            android:importantForAutofill="no"
             android:textSize="25sp" />
     </com.google.android.material.textfield.TextInputLayout>
 

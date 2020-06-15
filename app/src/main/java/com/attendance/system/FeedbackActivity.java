@@ -22,6 +22,7 @@ EditText editText;
         if (!message.isEmpty()){
         JavaMailAPI mail = new JavaMailAPI(this,"elmorshdi53@gmail.com", "Feedback from "+name, message);
         mail.execute();
+        editText.setText("");
         }
         else {editText.setError("type her..");}
     }

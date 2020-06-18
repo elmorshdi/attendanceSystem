@@ -136,7 +136,10 @@ public class GetStuAttendActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
+    }
+
+    public void goHome(View view) {
+       onBackPressed();
     }
 }

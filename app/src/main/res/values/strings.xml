@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Attendance System</string>
-    <string name="todo">TODO</string>
+    <string name="app_name">Attendance System</string><![CDATA[
      
      
+    ]]>
     <string name="sign_uplin">Sign Up </string>
 
     <string name="course_name">Course name</string>
@@ -10,13 +10,11 @@
     <string name="doctor_id">Doctor Id</string>
     <string name="add"> Add </string>
     <string name="discription">back</string>
-    <string name="subject_code">Subject Code</string>
     <string name="tacke_attendance">Take absence</string>
     <string name="add_course">Add Course</string>
     <string name="view_attendance">View attendance</string>
     <string name="get_apologies">Get Apologies</string>
     <string name="uploud"> upLoud Attendance </string>
-    <string name="intro">    </string>
     <string name="enter_user_id">Enter user Id</string>
     <string name="student">Student</string>
     <string name="lecturer">lecturer</string>
@@ -24,7 +22,6 @@
     <string name="sign_up"> sign up </string>
     <string name="record_attendance">RECORD ATTENDANCE</string>
     <string name="pick_date">pick date</string>
-    <string name="course_code">Course code</string>
     <string name="enter_id_or_scan_it">enter ID or scan it</string>
     <string name="scan_id"> Scan id </string>
     <string name="scanned_id"> scanned id </string>
@@ -44,7 +41,6 @@
     <string name="frist_name">First Name</string>
     <string name="full_name">Full Name</string>
     <string name="universtie_id">University Id</string>
-    <string name="universtie_email">University Email</string>
     <string name="password">password</string>
     <string name="confirm_password">confirm password</string>
     <string name="show"> show </string>
@@ -52,7 +48,6 @@
     <string name="message">message</string>
     <string name="accept"> Accept </string>
     <string name="remove"> Remove </string>
-    <string name="_0_0_0_0_0">0 0 0 0 0</string>
     <string name="resend_code">ReSend Code</string>
     <string name="forget_password">Forget Password?</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>

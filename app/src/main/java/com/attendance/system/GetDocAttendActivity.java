@@ -135,7 +135,10 @@ public class GetDocAttendActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
+    }
+
+    public void goHome(View view) {
+        onBackPressed();
     }
 }

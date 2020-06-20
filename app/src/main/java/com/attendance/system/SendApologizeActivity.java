@@ -1,6 +1,5 @@
 package com.attendance.system;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -99,9 +98,7 @@ public class SendApologizeActivity extends AppCompatActivity {
     }
 
     public void goHome(View view) {
-        Intent intent = new Intent(this, StudentHomeActivity.class);
-        startActivity(intent);
-        finish();
+       onBackPressed();
     }
 
     public void send(View view) {
@@ -149,6 +146,11 @@ public class SendApologizeActivity extends AppCompatActivity {
             Toast.makeText(this, "Course and reason cannot be empty ", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     public Student getStudent(String key) {

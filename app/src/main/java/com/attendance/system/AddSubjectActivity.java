@@ -1,6 +1,5 @@
 package com.attendance.system;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -33,7 +32,6 @@ public class AddSubjectActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
     }
 
@@ -61,8 +59,6 @@ public class AddSubjectActivity extends AppCompatActivity {
     }
 
     public void goHome(View view) {
-        Intent intent = new Intent(AddSubjectActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+        onBackPressed();
     }
 }

@@ -1,6 +1,5 @@
 package com.attendance.system;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -104,8 +103,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     public void back(View view) {
-        Intent intent=new Intent(ResetPasswordActivity.this,MainActivity.class);
-        startActivity(intent);
+        onBackPressed();
         finish();
     }
 }

@@ -1,6 +1,5 @@
 package com.attendance.system;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -53,16 +52,11 @@ public class StudentAccountActivity extends AppCompatActivity {
         }.getType();
         return gson.fromJson(json, type);
     }
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
+
 
 
     public void goHome(View view) {
-        Intent intent = new Intent(StudentAccountActivity.this, StudentHomeActivity.class);
-        startActivity(intent);
-        finish();
+       onBackPressed();
 
     }
 

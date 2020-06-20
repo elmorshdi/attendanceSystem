@@ -130,8 +130,7 @@ public class PendingActivity extends AppCompatActivity {
     }
 
     public void goHome(View view) {
-        Intent intent = new Intent(PendingActivity.this, SignUpActivity.class);
-        startActivity(intent);
-        finish();
+        onBackPressed();
+
     }
 }

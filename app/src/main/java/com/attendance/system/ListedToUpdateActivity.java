@@ -1,7 +1,6 @@
 package com.attendance.system;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -81,9 +80,8 @@ public class ListedToUpdateActivity extends AppCompatActivity {
     }
 
     public void go_attend(View view) {
-        Intent intent = new Intent(this, RecordAttendActivity.class);
-        startActivity(intent);
-        finish();
+        onBackPressed();
+
     }
 
     public ArrayList<String> getArrayList(String key) {

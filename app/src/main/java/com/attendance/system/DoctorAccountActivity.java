@@ -1,7 +1,6 @@
 package com.attendance.system;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -64,7 +63,6 @@ public class DoctorAccountActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         super.onBackPressed();
     }
 
@@ -92,9 +90,7 @@ public class DoctorAccountActivity extends AppCompatActivity {
     }
 
     public void goHome(View view) {
-        Intent intent = new Intent(DoctorAccountActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+        onBackPressed();
 
     }
 }

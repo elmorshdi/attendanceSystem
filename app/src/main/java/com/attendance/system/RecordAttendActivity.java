@@ -213,8 +213,6 @@ public class RecordAttendActivity extends AppCompatActivity {
 
 
     public void goHome(View view) {
-        Intent intent = new Intent(RecordAttendActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+       onBackPressed();
     }
 }

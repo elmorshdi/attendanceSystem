@@ -4,5 +4,5 @@ public class MyEmilSender {
     public static final String EMAIL = "sattendance0@gmail.com";
 
     //This is your from email password
-    public static final String PASSWORD = "01149137351";
+    public static final String PASSWORD = "*******";
 }

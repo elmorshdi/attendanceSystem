@@ -3,6 +3,14 @@
   A Project Presented to the faculty of Science the Department of Computer Science
   Mansoura University Submitted in partial satisfaction of
   the requirements for the degree of graduation project in Computer Science
+ ## Features:
+ * take the absence using the barcode Scanner 
+ * A chat for students' interaction with the lecturer
+ * calculating the absence for each student  
+ * Also adding a new course
+ * Follow-up of students' absence from each course
+ * The student can follow his absence in every subject and send the lecturer's apology
+ * end an email to the student who has exceeded the maximum absence
 ## Tools :       
 * Java
 * Firebase
